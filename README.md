@@ -22,3 +22,8 @@
 Install dependencies by running the following command from the root directory 
 
  `pip install -r requirements.txt`
+
+
+ # Documentation
+ ## Twitter
+ Query language: https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query

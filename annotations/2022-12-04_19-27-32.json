@@ -1,0 +1,28 @@
+[
+    {
+        "datasetObjectId": "2",
+        "dataObject": {
+            "content": "No one had an issue with PPP loan forgiveness for business owners...many of which committed outright fraud. But student debt needs to be something that can be written off in bankruptcy so it\u0027s classy just like the Republicans who oppose it.,,,,,"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2SPZ2D4WBQB8I",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Does NOT support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AUXVXXUVLF2G9",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Neutral\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AR8TKT64OK15J",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Neutral\"}}"
+                }
+            }
+        ]
+    }
+]

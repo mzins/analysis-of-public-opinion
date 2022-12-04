@@ -1,53 +1,64 @@
-import csv
-import os
-import warnings
-from pprint import pprint
-
+"""
+This script pulls data from 
+"""
 import tweepy
-from tweepy import api
-
-warnings.filterwarnings('ignore')
+import os
+import csv
+from pprint import pprint
 
 consumer_key = os.getenv("consumer_key")
 consumer_secret = os.getenv("consumer_secret")
 access_token = os.getenv("access_token")
 access_token_secret = os.getenv("access_token_secret")
 
+# authentication 
+auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
 
-client = tweepy.Client(
-    consumer_key=consumer_key, consumer_secret=consumer_secret,
-    access_token=access_token, access_token_secret=access_token_secret
-)
-response = client.search_recent_tweets("Student loan forgiveness",
-                                       tweet_fields="author_id,created_at,id,in_reply_to_user_id,public_metrics,text",
-                                       user_auth=True)
-tweets = response.data
+api = tweepy.API(auth) 
 
-tweet_fields = ["experiment_id", "text", "tweet_id",
-                "likes", "quotes", "replies", "retweets", "author_id"]
+tweet_fields = ["experiment_id", "experiment_group", "text", "tweet_id", "likes", "retweets", "created_at", "user_id"]
+tweets_file = open("data/tweets.csv", "w")
+tweets_csv = csv.writer(tweets_file)
+tweets_csv.writerow(tweet_fields)
+
+user_fields = ["user_id", "created_at", "description", "location", "followers_count", "screen_name", 
+                "statuses_count", "favourites_count", "verified"]
+users_file = open("data/users.csv", "w")
+users_csv = csv.writer(users_file)
+users_csv.writerow(user_fields)
 
 experiment_id = 0
-with open("data/tweets.csv", "w+") as tweets_file:
-    tweets_csv = csv.writer(tweets_file)
-    tweets_csv.writerow(tweet_fields)
 
-    for tweet in tweets:
-        text = tweet.text
-        tweet_id = tweet.id
-        likes = tweet.public_metrics.get("like_count")
-        quotes = tweet.public_metrics.get("quote_count")
-        replies = tweet.public_metrics.get("reply_count")
-        retweets = tweet.public_metrics.get("retweet_count")
-        author_id = tweet.author_id
+for exp_group in ["usedgov", "foxnews", "cnn"]:
+    tweepy_cursor = tweepy.Cursor(api.search_tweets, q=f"student loan @{exp_group} -is:retweet", count=100).items(100)
 
-        tweets_csv.writerow([experiment_id, text, tweet_id, likes, quotes, replies, retweets, author_id])
+    for t in tweepy_cursor:
+        tweet = t._json
+
+        text = tweet.get("text")
+        tweet_id = tweet.get("id_str")
+        likes = tweet.get("favorite_count")
+        retweets = tweet.get("retweet_count")
+        created_at = tweet.get("created_at")
+        user = tweet.get("user")
+        user_id = user.get("id")
+
+        tweets_csv.writerow([experiment_id, exp_group, text, tweet_id, likes, retweets, created_at, user_id])
+
+        user_created_at = user.get("created_at")
+        user_description = user.get("description")
+        user_location = user.get("location")
+        user_followers = user.get("followers_count")
+        user_screen_name = user.get("screen_name")
+        user_statuses_count = user.get("statuses_count")
+        user_favourites_count = user.get("favourites_count")
+        user_verified = user.get("verified")
+
+        users_csv.writerow([user_id, user_created_at, user_description, user_location, user_followers, user_screen_name, 
+                            user_statuses_count, user_favourites_count, user_verified])
+        
         experiment_id += 1
 
-        # author = client.get_user(id=author_id, tweet_fields="created_at,public_metrics", user_auth=True)
-
-        # author_created_at = author.data.created_at
-        # author_location = author.data.location
-        # author_username = author.data.username
-        # author_verified = author.data.verified
-
-        # print(author.data.public_metrics)
+tweets_file.close()
+users_file.close()

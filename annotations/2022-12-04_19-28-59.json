@@ -1,0 +1,54 @@
+[
+    {
+        "datasetObjectId": "1",
+        "dataObject": {
+            "content": "\"And the average existing debt is 50,000. 10,000 to 20,000 will do little to help but at least its something.\",,,,,"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1ACJ3P7ILB4I0",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Supports\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AUXVXXUVLF2G9",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Neutral\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AR8TKT64OK15J",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Neutral\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "4",
+        "dataObject": {
+            "content": "Student loan forgiveness is not fair and equal on ANY level. If you want to debate give me a try. I will not ever be in favor of any debt forgiveness at tax payers expense.  I\u0027m on a fixed income so .... shall we begin the debate?,,,,,"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2SPZ2D4WBQB8I",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Supports\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1ACJ3P7ILB4I0",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Does NOT support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2FVOJA4UMCDZK",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Supports\"}}"
+                }
+            }
+        ]
+    }
+]

@@ -1,0 +1,28 @@
+[
+    {
+        "datasetObjectId": "0",
+        "dataObject": {
+            "content": "\"This drives me nuts. It\u0027s literally money that has already been spent by the government. Nobody is on the hook for the debt, let alone taxpayers.\",,,,,"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A309GJIG6XMPDD",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Supports\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2FVOJA4UMCDZK",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Supports\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A21FQJDQC86N56",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Does NOT support\"}}"
+                }
+            }
+        ]
+    }
+]
