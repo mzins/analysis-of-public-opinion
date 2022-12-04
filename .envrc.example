@@ -1,0 +1,5 @@
+export consumer_key=""
+export consumer_secret=""
+export bearer_token=""
+export access_token=""
+export access_token_secret=""
