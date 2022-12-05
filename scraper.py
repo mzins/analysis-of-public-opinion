@@ -21,7 +21,9 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth) 
 
-tweet_fields = ["experiment_id", "experiment_group", "text", "tweet_id", "likes", "retweets", "created_at", "user_id", "in_reply_to_status_id", "in_reply_to_user_id", "in_reply_to_screen_name" ]
+tweet_fields = ["experiment_id", "experiment_group", "text", "tweet_id", "likes", 
+                "retweets", "created_at", "user_id", "in_reply_to_status_id", "in_reply_to_user_id", 
+                "in_reply_to_screen_name", "screen_name" ]
 tweets_file = open("data/tweets.csv", "w")
 print("new file for tweets")
 tweets_csv = csv.writer(tweets_file)
@@ -36,7 +38,9 @@ users_csv.writerow(user_fields)
 experiment_id = 0
 
 for exp_group in ["usedgov", "foxnews", "cnn"]: 
-    tweepy_cursor = tweepy.Cursor(api.search_tweets, q=f'(student loan forgiveness OR student loans OR student loan OR student debt) (to:{exp_group}) until:2022-12-04 since:2022-08-23 -filter:links filter:replies', count=500, tweet_mode='extended').items(500)
+    tweepy_cursor = tweepy.Cursor(api.search_tweets, 
+    q=f'("student loan forgiveness" OR "student loans" OR "student loan" OR "student debt" OR "loan forgiveness" OR "debt forgiveness" OR "biden student loan") (to:{exp_group}) until:2022-12-04 since:2022-08-23 -filter:links filter:replies', count=500, tweet_mode='extended').items(500)
+    # tweepy_cursor = tweepy.Cursor(api.search_tweets, q=f'("student loan forgiveness" OR "student loans" OR "student loan"  OR "debt forgiveness") (to:{exp_group}) until:2022-12-04 since:2022-08-23 -filter:links filter:replies', count=500, tweet_mode='extended').items(500)
     for t in tweepy_cursor:
         tweet = t._json
 
@@ -50,9 +54,9 @@ for exp_group in ["usedgov", "foxnews", "cnn"]:
         in_reply_to_status_id = tweet.get("in_reply_to_status_id")
         in_reply_to_user_id = tweet.get("in_reply_to_user_id")
         in_reply_to_screen_name = tweet.get("in_reply_to_screen_name")
+        screen_name = user.get("screen_name")
 
-
-        tweets_csv.writerow([experiment_id, exp_group, text, tweet_id, likes, retweets, created_at, user_id, in_reply_to_status_id, in_reply_to_user_id,in_reply_to_screen_name ])
+        tweets_csv.writerow([experiment_id, exp_group, text, tweet_id, likes, retweets, created_at, user_id, in_reply_to_status_id, in_reply_to_user_id,in_reply_to_screen_name, screen_name ])
 
         user_created_at = user.get("created_at")
         user_description = user.get("description")
@@ -67,5 +71,6 @@ for exp_group in ["usedgov", "foxnews", "cnn"]:
                             user_statuses_count, user_favourites_count, user_verified])
         
         experiment_id += 1
+print(len())
 tweets_file.close()
 users_file.close()
