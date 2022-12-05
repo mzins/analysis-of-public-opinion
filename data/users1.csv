@@ -29,7 +29,7 @@ user_id,created_at,description,location,followers_count,screen_name,statuses_cou
 2790922476,Fri Sep 05 01:47:02 +0000 2014,Retired Department of Navy Physical Scientist/Hydrogeologist,Texas Hill Country ,10,jimw20104,403,324,False
 1587576328236273675,Tue Nov 01 22:45:30 +0000 2022,,,14,eknesocmjk,130,1159,False
 1472622967322562576,Sun Dec 19 17:41:00 +0000 2021,,"Lake Forest, IL",113,KiserRod,711,532,False
-1549778070760001544,Wed Jul 20 15:28:03 +0000 2022,,,17,Mackeym49055503,2737,485,False
+1549778070760001544,Wed Jul 20 15:28:03 +0000 2022,,,17,Mackeym49055503,2734,485,False
 1586873335174029312,Mon Oct 31 00:11:30 +0000 2022,"Dogs are awesome, MAGA to the core, Follower of Christ","Chicago, IL",18,James59225185,312,833,False
 1598487395988561922,Fri Dec 02 01:23:47 +0000 2022,,,6,GregMilne19,36,84,False
 1523455648360538112,Mon May 09 00:12:12 +0000 2022,,,28,ChrisSt61561486,13347,3553,False
@@ -45,7 +45,7 @@ user_id,created_at,description,location,followers_count,screen_name,statuses_cou
 1527255367188680710,Thu May 19 11:51:00 +0000 2022,,,0,KCX04048599,25,4,False
 1374504221203070979,Tue Mar 23 23:32:23 +0000 2021,"I don't care, do you. Not a Bot. I dont want followers, Im not Jesus. Just a person with opinions in a world where you can be canceled for having free thought.",The greatest Country: U.S.A.,112,eyedontcaredoy1,2054,1679,False
 1519492811049086976,Thu Apr 28 01:45:17 +0000 2022,,,93,GordonPiszar,351,709,False
-1587871242534658052,Wed Nov 02 18:17:03 +0000 2022,Maga patriot --🇺🇸🇺🇸🇺🇸 --Ohio State Buckeyes 🏈🏈🏈🏈 Golfer🏌️‍♂️🏌️‍♂️⛳⛳⛳,"Ohio, USA",447,Kenosabe1969,1562,1062,False
+1587871242534658052,Wed Nov 02 18:17:03 +0000 2022,Maga patriot --🇺🇸🇺🇸🇺🇸 --Ohio State Buckeyes 🏈🏈🏈🏈 Golfer🏌️‍♂️🏌️‍♂️⛳⛳⛳,"Ohio, USA",444,Kenosabe1969,1558,1056,False
 1519131688500142081,Wed Apr 27 01:50:27 +0000 2022,,,8,TommySc20346014,674,1211,False
 130522971,Wed Apr 07 14:50:39 +0000 2010,Retired and traveling...,"The Bronx, NY, USA",27,Nylsa17,13562,1072,False
 322948663,Fri Jun 24 00:47:13 +0000 2011,"Semi Retired, nervous about the future of our country, mostly for our children and grandchildren. Our country needs to get back to good old fashioned values.","Show Low,  AZ",34,Kate2011Kate,1165,95,False
@@ -67,7 +67,7 @@ user_id,created_at,description,location,followers_count,screen_name,statuses_cou
 125069088,Sun Mar 21 15:38:27 +0000 2010,Economics. Mississippi State. Jiu Jitsu.  Married to @lyradnoel,"Franklin, TN USA",515,AdamVassGal,10571,2957,False
 1563904151184097282,Sun Aug 28 14:59:55 +0000 2022,"Our Custom glitter gel has a puzzle piece, a signature for my daughter. She is nonverbal autistic. We hope to raise awareness of Autism and special needs🧩💕","Ashland, KY",2,LoveHasNoWords2,20,5,False
 1562620150527844352,Thu Aug 25 01:58:50 +0000 2022,"University of Cincinnati - Class of 1978. 
-Revenue Officer (Retired) Internal Revenue Service.","Chillicothe, OH",2,george21roadru1,18,172,False
+Revenue Officer (Retired) Internal Revenue Service.","Chillicothe, OH",2,george21roadru1,18,164,False
 949030469546512386,Thu Jan 04 21:31:10 +0000 2018,"South Jersey born,raised, love the Phillies, ret USAF, ret Baccarat Dealer,  ret DJ, Gloucester Cath HS 77 Grad, now Smokey Mtns",Earth,84,Scottmaier221,1840,2003,False
 1476671121957265419,Thu Dec 30 21:47:17 +0000 2021,,,5,dhbanker54,156,578,False
 1586492758327435264,Sat Oct 29 22:59:07 +0000 2022,,,1,EvaFran41752781,1,5,False
@@ -87,7 +87,7 @@ Revenue Officer (Retired) Internal Revenue Service.","Chillicothe, OH",2,george2
 1519361738663247873,Wed Apr 27 17:04:25 +0000 2022,,,9,JasonGi37909786,83,99,False
 1594096256275681280,Sat Nov 19 22:32:47 +0000 2022,,,6,WileKelley,356,42,False
 1545391050629447681,Fri Jul 08 12:55:30 +0000 2022,,,0,kangiephil,36,119,False
-65743095,Fri Aug 14 21:40:25 +0000 2009,,cucina povera,1006,ZioJamesB,12685,23840,False
+65743095,Fri Aug 14 21:40:25 +0000 2009,,cucina povera,1006,ZioJamesB,12685,23839,False
 1164922527895834625,Fri Aug 23 15:29:26 +0000 2019,I am who I am.,,1,JameseMendenha1,17,5,False
 1569511469301248003,Tue Sep 13 02:21:44 +0000 2022,,,0,mba_wright,1,0,False
 1585808483445882882,Fri Oct 28 01:39:48 +0000 2022,,,2,DarrenOfTexas,181,32,False
@@ -136,7 +136,7 @@ Living in Europe, heart still in America","Vienna, Austria",61,DJB1864,674,1913,
 1500807826737881088,Mon Mar 07 12:17:44 +0000 2022,,"Washington, DC",6,Helloit66232229,79,53,False
 1594755452105097218,Mon Nov 21 18:12:01 +0000 2022,,,6,Joycurrent3,491,204,False
 1589606894834008064,Mon Nov 07 13:13:30 +0000 2022,"USA. Miami Dolphins, Georgia Bulldogs, Atlanta Braves, and Nashville predators fan. 2nd amendment. Outdoorsman. Inspiring woodworker. Blue line. History buff.",,118,mierholtz64,173,973,False
-1596152193144463361,Fri Nov 25 14:42:48 +0000 2022,,,12,Forevertrue10,724,1064,False
+1596152193144463361,Fri Nov 25 14:42:48 +0000 2022,,,12,Forevertrue10,721,1064,False
 1518635454660186113,Mon Apr 25 16:58:16 +0000 2022,,,3,PaulMacMcMaster,11,11,False
 1486708533844455431,Thu Jan 27 14:32:37 +0000 2022,I love to knit and listen to music!,,69,LisaKno59815534,1934,2602,False
 905108894049021958,Tue Sep 05 16:42:31 +0000 2017,,,2,jamesjanis1963,53,7,False
@@ -164,26 +164,26 @@ Living in Europe, heart still in America","Vienna, Austria",61,DJB1864,674,1913,
 1147881570025529344,Sun Jul 07 14:54:27 +0000 2019,,,9,TammyBu55231230,198,81,False
 1505969074400075782,Mon Mar 21 18:06:48 +0000 2022,Conservative,,0,BekKuch,245,306,False
 1586063769611943939,Fri Oct 28 18:34:36 +0000 2022,,"Vermont, USA",27,PassuPerry,1520,1032,False
-1591625725,Sat Jul 13 18:43:05 +0000 2013,⚫️🟡STEELERS 🏈OBVIOUSLY!! 🖥 Part Time Blogger. 📲DM for networking. 🤐Rants welcome. NOT 🚫 a voice actor,"Dallas, TX",1158,beanie099,12838,3457,False
-1587482882985148417,Tue Nov 01 16:33:55 +0000 2022,,,55,RastelliSteve,573,1094,False
+1591625725,Sat Jul 13 18:43:05 +0000 2013,⚫️🟡STEELERS 🏈OBVIOUSLY!! 🖥 Part Time Blogger. 📲DM for networking. 🤐Rants welcome. NOT 🚫 a voice actor,"Dallas, TX",1158,beanie099,12837,3456,False
+1587482882985148417,Tue Nov 01 16:33:55 +0000 2022,,,54,RastelliSteve,573,1094,False
 320187191,Sun Jun 19 13:25:40 +0000 2011,"Jesus is Lord! Happily married to my wife, Diane! Proud father of 3 great girls.","Ohio, USA",356,drew_mullen,10653,23856,False
 1518782629226577920,Tue Apr 26 02:43:46 +0000 2022,"Looking for like minded common sense peep tweets, anyone out there?😂😂🙄",,9,Shawnlm63,114,290,False
 36015448,Tue Apr 28 07:32:53 +0000 2009,,Illinois,78,Smyttii,884,466,False
 2366233298,Fri Feb 28 23:42:44 +0000 2014,"Husband, Father, Facilities Electrical Engineer, Looking for new opportunities.",,6,SeniorEEng,383,632,False
-1140550132884070401,Mon Jun 17 09:21:56 +0000 2019,,,13,thomaslew13,6414,0,False
+1140550132884070401,Mon Jun 17 09:21:56 +0000 2019,,,13,thomaslew13,6409,0,False
 1586382556395499520,Sat Oct 29 15:41:09 +0000 2022,,,6,jgh_57,515,391,False
 1469812403953147910,Sat Dec 11 23:33:22 +0000 2021,,,3,NiddrieRichard,253,86,False
 1586724847517941761,Sun Oct 30 14:21:38 +0000 2022,Retired,Florida,38,larryanglin9,608,2646,False
-1140550132884070401,Mon Jun 17 09:21:56 +0000 2019,,,13,thomaslew13,6414,0,False
+1140550132884070401,Mon Jun 17 09:21:56 +0000 2019,,,13,thomaslew13,6409,0,False
 407966949,Tue Nov 08 20:06:26 +0000 2011,Musician / Singer /Song Writer performing your favorite dance music.,Port Charlotte Fl,16,frankamedeo,133,16,False
-1549916753114824704,Thu Jul 21 00:40:02 +0000 2022,"Mom of 4, Army wife for life, AF and Army Mom, and a VA caregiver. Pure Blood. Gamer. Lover of freedom.",Podunk Missery,35,FrenchVanessa3,1007,164,False
-841619868923314177,Tue Mar 14 11:59:48 +0000 2017,,,25,DavidWo15416040,51716,73,False
+1549916753114824704,Thu Jul 21 00:40:02 +0000 2022,"Mom of 4, Army wife for life, AF and Army Mom, and a VA caregiver. Pure Blood. Gamer. Lover of freedom.",Podunk Missery,35,FrenchVanessa3,1005,164,False
+841619868923314177,Tue Mar 14 11:59:48 +0000 2017,,,25,DavidWo15416040,51715,73,False
 1091323048672796674,Fri Feb 01 13:11:05 +0000 2019,,,1,MikeyPInTheHou1,861,12,False
-1556005767932571648,Sat Aug 06 19:54:49 +0000 2022,,,5,Vincent08571545,127,441,False
+1556005767932571648,Sat Aug 06 19:54:49 +0000 2022,,,5,Vincent08571545,127,440,False
 1519424767891316738,Wed Apr 27 21:14:36 +0000 2022,Trump supporter,,0,TheDonald306,33,21,False
 1592519812793749505,Tue Nov 15 14:08:08 +0000 2022,"Opin•ion : A view, judgment, or appraisal formed in the mind about a particular matter, expressed by typing or otherwise ""tweeting"" on site known as twitter.",Earth for now,5,blue_pbnj,70,33,False
 862393887029178368,Wed May 10 19:48:20 +0000 2017,,,2,FredBenoit5,622,115,False
-1595470254607671296,Wed Nov 23 17:32:21 +0000 2022,,,2,jackSpa81774793,181,3,False
+1595470254607671296,Wed Nov 23 17:32:21 +0000 2022,,,2,jackSpa81774793,177,3,False
 1591516444105342976,Sat Nov 12 19:41:33 +0000 2022,,,2,JohnHen69685395,44,0,False
 301552174,Thu May 19 17:21:19 +0000 2011,"People should not be afraid of their governments, governments should be afraid of their people.
 
