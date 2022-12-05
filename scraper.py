@@ -36,7 +36,7 @@ users_csv.writerow(user_fields)
 experiment_id = 0
 
 for exp_group in ["usedgov", "foxnews", "cnn"]: 
-    tweepy_cursor = tweepy.Cursor(api.search_tweets, q=f'(student loan forgiveness OR student loans OR student loan) (to:{exp_group}) until:2022-12-04 since:2022-08-23 -filter:links filter:replies', count=500, tweet_mode='extended').items(500)
+    tweepy_cursor = tweepy.Cursor(api.search_tweets, q=f'(student loan forgiveness OR student loans OR student loan OR student debt) (to:{exp_group}) until:2022-12-04 since:2022-08-23 -filter:links filter:replies', count=500, tweet_mode='extended').items(500)
     for t in tweepy_cursor:
         tweet = t._json
 
