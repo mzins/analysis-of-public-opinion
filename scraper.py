@@ -37,7 +37,7 @@ users_csv.writerow(user_fields)
 
 experiment_id = 0
 
-for exp_group in ["usedgov", "foxnews", "cnn"]: 
+for exp_group in ["usedgov", "foxnews", "cnn"]: # need to add msnbc, nytimes, npr to list 
     tweepy_cursor = tweepy.Cursor(api.search_tweets, 
     q=f'("student loan forgiveness" OR "student loans" OR "student loan" OR "student debt" OR "loan forgiveness" OR "debt forgiveness" OR "biden student loan") (to:{exp_group}) until:2022-12-04 since:2022-08-23 -filter:links filter:replies', count=500, tweet_mode='extended').items(500)
     # tweepy_cursor = tweepy.Cursor(api.search_tweets, q=f'("student loan forgiveness" OR "student loans" OR "student loan"  OR "debt forgiveness") (to:{exp_group}) until:2022-12-04 since:2022-08-23 -filter:links filter:replies', count=500, tweet_mode='extended').items(500)
