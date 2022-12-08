@@ -1,0 +1,214 @@
+---
+title: "Explore Twitter Data"
+author: "Lyn Nguyen"
+date: '2022-12-07'
+output:
+  pdf_document: 
+    toc: true
+  html_document: 
+    toc: true
+    number_sections: true
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = F)
+library(dplyr)
+library(lubridate)
+library(stringr)
+library(ggplot2)
+```
+# ELT
+
+This script uses output from analysis-of-public-opinion/scraper.py. Ultimately, we keep data pulled on Dec
+```{r}
+tweets1 <- read.csv("data/tweets1.csv")
+tweets2 <- read.csv("data/tweets2.csv")
+tweets3 <- read.csv("data/tweets3.csv") # 467 rows
+tweets4 <- read.csv("data/tweets4.csv") # 347 rows 
+
+users3 <- read.csv("data/users3.csv") # 467 rows
+users4 <- read.csv("data/users4.csv") # 347 rows 
+
+```
+
+```{r}
+head(tweets1)
+```
+
+```{r}
+# created_at to date and day of week 
+test = head(tweets1) 
+dow <- substr(test$created_at, 1, 3)
+month_day <- substr(test$created_at, 5, 10)
+time<- substr(test$created_at, 12, 19)
+yr <- substr(test$created_at, 26, 30)
+
+ymd <- as.Date(paste0(month_day, yr), format = "%b %d %h:%m:%s %Y")
+
+# as.Date(test$created_at, format = "%a %b %d %h:%m:%s +0000 %Y")
+tweets1 <- tweets1 %>% mutate(dow = substr(created_at, 1, 3)
+                              , month_day = substr(created_at, 5, 10)
+                              , time = substr(created_at, 12, 19)
+                              , yr = substr(created_at, 26, 30), 
+                              , ymd = as.Date(paste0(month_day, yr), format = "%b %d %Y"))
+tweets2 <- tweets2 %>% mutate(dow = substr(created_at, 1, 3)
+                              , month_day = substr(created_at, 5, 10)
+                              , time = substr(created_at, 12, 19)
+                              , yr = substr(created_at, 26, 30), 
+                              , ymd = as.Date(paste0(month_day, yr), format = "%b %d %Y"))
+tweets3 <- tweets3 %>% mutate(dow = substr(created_at, 1, 3)
+                              , month_day = substr(created_at, 5, 10)
+                              , time = substr(created_at, 12, 19)
+                              , yr = substr(created_at, 26, 30), 
+                              , ymd = as.Date(paste0(month_day, yr), format = "%b %d %Y")
+                              , tweet_id_char = as.character(as.numeric(tweet_id)))
+tweets4 <- tweets4 %>% mutate(dow = substr(created_at, 1, 3)
+                              , month_day = substr(created_at, 5, 10)
+                              , time = substr(created_at, 12, 19)
+                              , yr = substr(created_at, 26, 30), 
+                              , ymd = as.Date(paste0(month_day, yr), format = "%b %d %Y")
+                              , tweet_id_char = as.character(as.numeric(tweet_id)))
+summary(tweets1$ymd) 
+summary(tweets2$ymd)
+summary(tweets3$ymd)
+summary(tweets4$ymd)
+
+```
+
+`tweets1.csv` has data from 11/26/2022 but only cnn as liberal source. 
+`tweet2.csv`: 11/26- 12/3 but only cnn as liberal source
+`tweet3.csv`: 11/28- 12/3 liberal sources has cnn, npr, msnbc, nytimes, 
+`tweet4.csv`: 11/28- 12/3 but only cnn as liberal source
+
+`tweets1` and `tweets2` have 814 fields total, but only 468 unique. 
+
+```{r}
+master <- rbind(tweets3, tweets4) %>% select(-experiment_id) %>% distinct()
+```
+
+`master` has 471 points, but `length(unique(master$tweet_id))` has 468 points. Where is the 3 difference? Since tweet4 hit the api after tweet3, some has updated values. For example tweet_id "1598304394931412992" has 0 like in tweet3 but 1 like in tweet 4. If there is duplicate in tweet_id, we will keep the one with the higher index. 
+
+```{r}
+master <- master %>% mutate(tweet_id_char = as.character(as.numeric(tweet_id)))
+master_tweet_id <- master$tweet_id_char
+dup_master <- master_tweet_id[duplicated(master_tweet_id) == T] 
+
+print("The duplicated tweet_ids are:")
+dup_master
+```
+3 tweets are duplicated because they have updated "likes" count. 
+```{r}
+dup_val1 <- master[master$tweet_id == 1598304394931412992, ][2,]
+dup_val2 <- master[master$tweet_id == 1598277959223083008, ][2,]
+dup_val3 <- master[master$tweet_id == 1598411537667874816, ][2,]
+
+m <- master %>% filter(!tweet_id %in% dup_master)
+master <- rbind(m, dup_val1, dup_val2, dup_val3) %>% arrange(tweet_id) # in ascending tweet_id order 
+
+# write.csv(master, "data/tweets_master_dec5dec6.csv")
+```
+
+## Get `text` and `tweet_id` only. 
+Madelaine will use this file in SageMaker. Need to keep row orders for annotation output. 
+```{r}
+tweet_text <- master %>% select("tweet_id", "text") %>% distinct() #468 
+# write.csv(tweet_text, "data/tweet_text_only.csv")
+```
+
+
+## Clean up `users`.
+```{r}
+# What user_id in user3 that's not in user4? 
+user4_id <- users4$user_id
+user3_id <- users3$user_id
+
+user3_id_only <- setdiff(user3_id, user4_id) #ids in user3 that's not in user4 - 118 total 
+user3_profiles_only <- users3 %>% filter(user_id %in% user3_id_only)
+
+all_users <- rbind(user3_profiles_only, users4) %>% mutate(user_id_char = as.character(as.numeric(user_id))) %>% distinct() # 459 total users 
+
+# merge users and tweets ===
+# rename overlap column names 
+tweet_cnames <- colnames(master)
+colnames(master) <- c("experiment_group", "text", "tweet_id", "tweet_likes", "retweets","tweet_created_at","user_id","in_reply_to_status_id","in_reply_to_user_id", 
+                      "in_reply_to_screen_name", "screen_name","dow","month_day","time","yr","ymd","tweet_id_char")
+author_cnames <- colnames(all_users)
+
+final_tweets <- left_join(master %>% select(-c(screen_name)), all_users, by = "user_id")
+
+write.csv(final_tweets, "data/master.csv")
+```
+
+There are `r nrow(all_users)` unique authors for these 468 tweets.
+
+\newpage
+# EDA
+
+`final_tweets` have 25 columns and 468 observations (tweets). 
+```{r}
+glimpse(final_tweets)
+```
+
+## experiment_group / in_reply_to_screen_name
+
+*What is the share of replies to the 5 news sources? How do ('msnbc', 'cnn', 'npr', 'nytimes') compare to 'cnn'?*
+- FoxNews make up 87% of our data points. When it comes to the student loan forgiveness discussion, the Department of Education has the least engagement from Twitter users, at only 1%. 
+
+```{r}
+liberal <- c('msnbc', 'cnn', 'npr', 'nytimes')
+conservative <- c('foxnews')
+
+source_count <- as.data.frame(table(final_tweets$in_reply_to_screen_name)) %>% mutate(Proportion = round(Freq/nrow(final_tweets), 2)) %>% arrange(Freq)
+source_count
+barplot(source_count$Freq)
+```
+
+## `text`
+
+*Is tweet length a distinguishable characteristic for the experiment groups?*
+Within the liberal groups, most of NPR replies have over 40 words. NYTimes's reply lengths are scattered on the lower end.  
+```{r}
+final_tweets <- final_tweets %>% mutate(text_length = nchar(text), 
+                                      text_word_count = str_count(text, '\\w+'))
+
+
+l <- final_tweets %>% filter(experiment_group %in% liberal) %>% 
+  select(experiment_group, text_length, text_word_count)
+
+colors <- c("#FDAE61", # Orange
+            "#D9EF8B", # Light green
+            "#66BD63") # Darker green
+x <- l$text_word_count
+y <- l$text_length
+group <- l$experiment_group
+# Scatter plot
+ggplot(l, aes(x, y, color = factor(group))) + geom_point(size = 2) + xlab("Word Count") + ylab("Text Length")
+
+```
+
+```{r}
+x <- final_tweets$text_word_count
+y <- final_tweets$text_length
+group <- final_tweets$experiment_group
+ggplot(final_tweets, aes(x, y, color = factor(group))) + geom_point(size = 2) + xlab("Word Count") + ylab("Text Length")
+
+```
+
+```{r}
+# how does nchar treat emojis? - no. 
+test = final_tweets[463,] %>% select("text", "text_word_count", "text_length")
+
+```
+
+
+# LOOKING AHEAD 
+*1. Which author has multiple replies? Do they reply to the same source or not?* 
+- 8 peo
+```{r}
+author_multtweet <- c(data.frame(table(final_tweets$screen_name)) %>% filter(Freq > 1) %>% select(Var1))
+
+author_overlap <- final_tweets %>% filter(screen_name %in% c("DahlmanCarl", "fabulosi_t", "jackSpa81774793", "johnbutler410", "michael_favreau", "PCopposition", "RogerWPetersen1", "thomaslew13" ))
+```
+
