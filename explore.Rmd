@@ -5,8 +5,10 @@ date: '2022-12-07'
 output:
   pdf_document: 
     toc: true
+    toc_depth: 4
   html_document: 
     toc: true
+    toc_depth: 4
     number_sections: true
 ---
 
@@ -22,20 +24,17 @@ library(ggplot2)
 # ELT
 
 This script uses output from analysis-of-public-opinion/scraper.py. Ultimately, we keep data pulled on Dec
-```{r}
-tweets1 <- read.csv("data/tweets1.csv")
-tweets2 <- read.csv("data/tweets2.csv")
-tweets3 <- read.csv("data/tweets3.csv") # 467 rows
-tweets4 <- read.csv("data/tweets4.csv") # 347 rows 
+```{r echo=FALSE}
+tweets1 <- read.csv("prelim_data/tweets1.csv")
+tweets2 <- read.csv("prelim_data/tweets2.csv")
+tweets3 <- read.csv("prelim_data/tweets3.csv") # 467 rows
+tweets4 <- read.csv("prelim_data/tweets4.csv") # 347 rows 
 
-users3 <- read.csv("data/users3.csv") # 467 rows
-users4 <- read.csv("data/users4.csv") # 347 rows 
+users3 <- read.csv("prelim_data/users3.csv") # 467 rows
+users4 <- read.csv("prelim_data/users4.csv") # 347 rows 
 
 ```
 
-```{r}
-head(tweets1)
-```
 
 ```{r}
 # created_at to date and day of week 
@@ -107,14 +106,14 @@ dup_val3 <- master[master$tweet_id == 1598411537667874816, ][2,]
 m <- master %>% filter(!tweet_id %in% dup_master)
 master <- rbind(m, dup_val1, dup_val2, dup_val3) %>% arrange(tweet_id) # in ascending tweet_id order 
 
-# write.csv(master, "data/tweets_master_dec5dec6.csv")
+# write.csv(master, "prelim_data/tweets_master_dec5dec6.csv")
 ```
 
 ## Get `text` and `tweet_id` only. 
 Madelaine will use this file in SageMaker. Need to keep row orders for annotation output. 
 ```{r}
 tweet_text <- master %>% select("tweet_id", "text") %>% distinct() #468 
-# write.csv(tweet_text, "data/tweet_text_only.csv")
+# write.csv(tweet_text, "prelim_data/tweet_text_only.csv")
 ```
 
 
@@ -165,7 +164,9 @@ source_count
 barplot(source_count$Freq)
 ```
 
-## `text`
+## Tweet 
+
+### `text`
 
 *Is tweet length a distinguishable characteristic for the experiment groups?*
 Within the liberal groups, most of NPR replies have over 40 words. NYTimes's reply lengths are scattered on the lower end.  
@@ -203,12 +204,50 @@ test = final_tweets[463,] %>% select("text", "text_word_count", "text_length")
 ```
 
 
-# LOOKING AHEAD 
+
+### Tweet Popularity
+
+#### `favourites_count` 
+
+#### `followers_count` 
+
+#### `verified` 
+
+
+## User 
+
+### `screen_name`
+
 *1. Which author has multiple replies? Do they reply to the same source or not?* 
-- 8 peo
+
+- 8 people replied twice, 2 of which to multiple news source twitters, but only 1 engage with conservative (FoxNews) and liberal (MSNBC).
 ```{r}
 author_multtweet <- c(data.frame(table(final_tweets$screen_name)) %>% filter(Freq > 1) %>% select(Var1))
 
-author_overlap <- final_tweets %>% filter(screen_name %in% c("DahlmanCarl", "fabulosi_t", "jackSpa81774793", "johnbutler410", "michael_favreau", "PCopposition", "RogerWPetersen1", "thomaslew13" ))
+author_overlap <- final_tweets %>% filter(screen_name %in% c("DahlmanCarl", "fabulosi_t", "jackSpa81774793", "johnbutler410", "michael_favreau", "PCopposition", "RogerWPetersen1", "thomaslew13" )) %>% select(in_reply_to_screen_name, screen_name, statuses_count, favourites_count, followers_count, tweet_likes, retweets)
+
+author_overlap 
 ```
+### `created_at`
+*Does age of account tell who they might engage with?*
+
+### `description`
+*How many have profile descriptions?*
+
+### `location`
+*How many have location display? Is one location more densed?* 
+
+### `ymd` & `dow`
+*Which day of the week do people discuss student loan forgiveness the most often?*
+
+### `time`
+*What time of day has the most discussion?*
+
+### User Popularity 
+
+#### `retweets` & `experiment_group`
+*Which tweet has more `retweets`? Does it happen more often on liberal or conservative outlet?*
+
+#### `tweet_likes` & `experiment_group`
+*Which tweet has more `likes`? Does it happen more often on liberal or conservative outlet?*
 
