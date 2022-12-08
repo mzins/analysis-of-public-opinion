@@ -1,3 +1,8 @@
+.ipynb_checkpoints
 .envrc
-.DS_STORE
+.DS_Store
 .httr-oauth
+sample.csv
+.RData
+.Rhistory
+prelim_data/*
