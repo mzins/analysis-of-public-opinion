@@ -1,5 +1,5 @@
 """
-This script pulls data from 
+This script queries twitter for replies regarding Student Loan Forgiveness
 
 December 2022 
 Madelaine Zinser
