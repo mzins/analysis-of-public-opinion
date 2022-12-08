@@ -204,14 +204,42 @@ test = final_tweets[463,] %>% select("text", "text_word_count", "text_length")
 ```
 
 
-
 ### Tweet Popularity
 
-#### `favourites_count` 
 
-#### `followers_count` 
+#### `retweets` & `experiment_group`
+*Which tweet has more `retweets`? Does it happen more often on liberal or conservative outlet?*
+One tweet has 85 retweets, one have 5 retweets, three have 3 retweets but the majority 447 (96%) do not have any retweets.
 
-#### `verified` 
+
+```{r}
+retweet_count <- data.frame(table(final_tweets$retweets)) %>% arrange(desc(Freq))
+colnames(retweet_count) <- c("retweets", "freq")
+retweet_count
+```
+
+*Which outlet has posts with more than 1 retweet? *
+
+Foxnews and NPR are the two sources where replies have over 1 retweet, with Foxnews holding the highest, 85 retweets.
+
+```{r}
+many_retweets <- final_tweets %>% filter(retweets > 1) %>% select(experiment_group, retweets, screen_name)
+many_retweets
+```
+
+#### `tweet_likes` & `experiment_group`
+*Which tweet has more `likes`? Does it happen more often on liberal or conservative outlet?*
+
+One post has 5446 likes, but the majority (308 out of 478) have 0 likes. 
+```{r}
+tweet_like_count <- data.frame(table(final_tweets$tweet_likes)) %>% arrange(desc(Freq))
+colnames(tweet_like_count) <- c("likes_count", "freq")
+tweet_like_count %>% 
+```
+*Where is the highest retweet reply?*
+
+*On average, does conservative or liberal sources have more likes? (after discounting the post with 5446)*
+
 
 
 ## User 
@@ -228,6 +256,7 @@ author_overlap <- final_tweets %>% filter(screen_name %in% c("DahlmanCarl", "fab
 
 author_overlap 
 ```
+
 ### `created_at`
 *Does age of account tell who they might engage with?*
 
@@ -245,9 +274,21 @@ author_overlap
 
 ### User Popularity 
 
-#### `retweets` & `experiment_group`
-*Which tweet has more `retweets`? Does it happen more often on liberal or conservative outlet?*
+#### `favourites_count` 
+*Which media sources has engagement from the most favourited tweeter?*
+```{r}
+fav_counts_tweet <- data.frame(table(final_tweets$favourites_count)) %>% arrange(desc(Freq))
 
-#### `tweet_likes` & `experiment_group`
-*Which tweet has more `likes`? Does it happen more often on liberal or conservative outlet?*
+```
+
+#### `followers_count` 
+*Which media sources has engagement from the tweeters with the highest & lowest follower count??*
+
+#### `verified` 
+*Are there any verified accounts? If so, where did they engage with?*
+None of the author is verified. 
+
+```{r}
+unique(final_tweets$verified)
+```
 
