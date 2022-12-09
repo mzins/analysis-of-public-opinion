@@ -219,7 +219,6 @@ retweet_count
 ```
 
 *Which outlet has posts with more than 1 retweet? *
-
 Foxnews and NPR are the two sources where replies have over 1 retweet, with Foxnews holding the highest, 85 retweets.
 
 ```{r}
@@ -229,21 +228,18 @@ many_retweets
 
 #### `tweet_likes` & `experiment_group`
 *Which tweet has more `likes`? Does it happen more often on liberal or conservative outlet?*
-
 One post has 5446 likes, but the majority (308 out of 478) have 0 likes. 
 ```{r}
 tweet_like_count <- data.frame(table(final_tweets$tweet_likes)) %>% arrange(desc(Freq))
 colnames(tweet_like_count) <- c("likes_count", "freq")
-tweet_like_count %>% 
 ```
-*Where is the highest retweet reply?*
 
+*Where is the highest retweet reply?*
 - A tweet addressing FoxNews from someone who is against student loan forgiveness.
 ```{r}
 print(final_tweets[which.max(final_tweets$tweet_likes),]$experiment_group)
 print(final_tweets[which.max(final_tweets$tweet_likes),]$text)
 print(final_tweets[which.max(final_tweets$tweet_likes),]$tweet_likes)
-
 ```
 
 
@@ -318,36 +314,107 @@ While most accounts are under 3 years old, there are a handful of accounts in th
 One text https://twitter.com/jack_jackson/status/1598689928946323458 @ both NPR and FoxNews. However, the text is an original text (`in_reply_to_status_id` is N/A). Maybe it's okay to keep the `experiment_group` as NPR since mentioning them first prioritize them over Foxnews? 
 
 ```{r}
-ft%>% filter(account_age > 5000) %>% select(experiment_group, text)
+ft %>% filter(account_age > 5000) %>% select(experiment_group, text)
 ```
-
 
 ### `description`
 *How many have profile descriptions?*
-
+More than half of the tweeters don't have an account profile description. Are the share of those with and without description proportional based on who they reply to? 
+```{r}
+(final_tweets %>% mutate(has_profile_desc = ifelse(nchar(description) == 0, 0, 1)) )%>% group_by(has_profile_desc) %>% summarize(agg_profile_desc = n())
+```
 
 ### `location`
-*How many have location display? Is one location more densed?* 
+*How many have profile location display? Is one location more dense?* 
+
+Most of the tweets belong to tweeter with no locations (66%).
+
+```{r}
+(final_tweets %>% mutate(has_profile_loc= ifelse(nchar(location) == 0, 0, 1)) )%>% group_by(has_profile_loc) %>% summarize(agg_profile_loc = n())
+```
 
 ### `ymd` & `dow`
 *Which day of the week do people discuss student loan forgiveness the most often?*
+Recall that data is from Sunday 11/27 - Tuesday 12/6Thursdays and Saturdays get the most tweets.
+```{r}
+final_tweets %>% group_by(dow) %>% summarize(tweet_count = n())
+```
 
+
+
+*bar plot of tweet count by day*
+5 of 9 days have fewer than 20 tweets. Thursday Dec. 1st makes up 33% of all tweets. On Dec 1st, Supreme Court announced they will expedite the process. 
+- https://www.nytimes.com/2022/12/01/us/politics/supreme-court-student-loan-forgiveness.html
+- https://www.washingtonpost.com/politics/2022/12/01/supreme-court-review-student-loan-forgiveness/
+
+```{r}
+ymd_data <- final_tweets %>% group_by(ymd) %>% summarize(tweet_count = n())
+
+barplot(height = ymd_data$tweet_count, names = (ymd_data$ymd))
+```
 ### `time`
+
 *What time of day has the most discussion?*
+
+```{r}
+time <- final_tweets %>% mutate(hour = substr(time, 1, 2))
+time_gr <- time %>% group_by(hour) %>% summarize(freq_by_hr = n())
+time_gr
+```
+
+*bar plot of tweet count by hour*
+Tweets on this topic lulls between 8-10 am. The afternoon has the highest engagement, with a decrease before commuting time, and an rise right after. 
+```{r}
+barplot(height = time_gr$freq_by_hr, names = (time_gr$hour))
+```
+
+*bar plot with multiple colors for conservative vs. liberal*
+
+8pm is a popular time for engagement within our control and liberal groups. 
+```{r}
+final_tweets <- final_tweets %>% 
+  mutate(hour = substr(time, 1, 2), 
+         politics = ifelse(experiment_group %in% c('cnn', 'msnbc', 'npr', 'nytimes'), 'liberal', 
+                           ifelse(experiment_group == 'usedgov', 'controlled', 'conservative')))
+stacked_time <- final_tweets %>% group_by(politics, hour) %>% summarize(Freq = n())
+
+ggplot(stacked_time, aes(fill=politics, y=Freq, x=hour)) + 
+    geom_bar(position="stack", stat="identity")
+```
+
+*Is the 8pm mostly due to the Supreme Court announcement on Dec.1st?*
+Yes, Dec 1st makes up over 50% of total tweets at 8pm. 
+```{r}
+dec1_stacked_time <- final_tweets %>% filter(ymd == "2022-12-01") %>% 
+  group_by(politics, hour) %>% summarize(Freq = n())
+
+ggplot(dec1_stacked_time, aes(fill=politics, y=Freq, x=hour)) + 
+    geom_bar(position="stack", stat="identity")
+```
+
 
 ### User Popularity 
 
-#### `favourites_count` 
-*Which media sources has engagement from the most favourited tweeter?*
+#### `favourites_count` & `followers_count`
+
+**Which media sources has engagement from the most favorite tweeter?**
+
+Tweeters engaging with liberal news source had 5 times more profile favorites and 3.6 times more followers, on average. Although fewer tweets addressed the controlled sources, they have more followers on average than accounts engaging in both conservative and liberal media. 
+
 ```{r}
 fav_counts_tweet <- data.frame(table(final_tweets$favourites_count)) %>% arrange(desc(Freq))
+
+fc <- final_tweets %>% #filter(tweet_likes != 5446) %>% 
+  mutate(politics = ifelse(experiment_group %in% c('cnn', 'msnbc', 'npr', 'nytimes'), 'liberal', 
+                           ifelse(experiment_group == 'usedgov', 'controlled', 'conservative')))
+fc <- fc %>% group_by(politics) %>% 
+  summarize(avg_fav = mean(favourites_count), agg_likes = sum(favourites_count), 
+            avg_followers = mean(followers_count), agg_retweets = sum(followers_count))
+fc
 ```
 
-#### `followers_count` 
-*Which media sources has engagement from the tweeters with the highest & lowest follower count??*
-
 #### `verified` 
-*Are there any verified accounts? If so, where did they engage with?*
+**Are there any verified accounts? If so, where did they engage with?**
 None of the author is verified. 
 
 ```{r}
@@ -355,7 +422,42 @@ unique(final_tweets$verified)
 ```
 
 
-*Is there an reason why someone who is against student loan forgiveness would reply to fox vs. cnn or vice versa?*
-- refer to max like, why is the opposition not addressing someone? 
+
+\newpage
+# EDA - with annotations
+
+```{r}
+annotated <- read.csv("data/master_annotated.csv")
+glimpse(annotated)
+```
 
 
+```{r}
+# split up (profile) created_at, today = 12/8/22
+annotated <- annotated %>% mutate(age_dow = substr(created_at, 1, 3)
+                              , age_month_day = substr(created_at, 5, 10)
+                              , age_time = substr(created_at, 12, 19)
+                              , age_yr = substr(created_at, 26, 30), 
+                              , age_ymd = as.Date(paste0(age_month_day, age_yr), format = "%b %d %Y"),
+                              , account_age = today - age_ymd)
+```
+
+## `opinion_key` & `opinion_label`
+
+## `opinion_annotation_confidence`
+
+## `ego_involvment_label`
+
+## `ego_involvement_annotation_confidence`
+*Give summary of the stand*
+
+*What is the stand of the "older twitter accounts"?*
+
+*Stacked bar plot on views on student loans and how it matches up against `experiment_group`*
+ggplot(stacked_time, aes(fill=politics, y=Freq, x=hour)) + 
+    geom_bar(position="stack", stat="identity")
+
+
+
+**Is there an reason why someone who is against student loan forgiveness would reply to fox vs. cnn or vice versa?**
+- refer to max likes, why is the opposition not addressing someone? 
