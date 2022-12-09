@@ -1,0 +1,262 @@
+[
+    {
+        "datasetObjectId": "41",
+        "dataObject": {
+            "content": "@FoxNews Thank God I\u0027m not paying for anyones student loan! Or they can pay for my car payment."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.AO6PPBKON962N",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AP21O70VXNX10",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"AGAINST student loan forgiveness\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3C8E7YVLNEQKA",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "113",
+        "dataObject": {
+            "content": "@FoxNews Can you forgive my home loan? Since my student loans I paid already? No difference."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A24XBVRMI8OR2E",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3G4WDI30DSY08",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"FOR student loan forgiveness \"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AYTIC1ZJG09PI",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"FOR student loan forgiveness \"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "55",
+        "dataObject": {
+            "content": "@FoxNews Just did this to help try and get votes. Pay your student loans just like everyone else did in the past. Congress won\u0027t pass this."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.ANZ4YBNNFVANB",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2RY47ZGJWP4DW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"AGAINST student loan forgiveness\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1PV0NLHP6ZNCL",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"FOR student loan forgiveness \"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "229",
+        "dataObject": {
+            "content": "@FoxNews Likely get more support from the GOP if the student loan was looking at being reformed so they are less predatory and unreasonable instead of taking money from Peter to pay Paul."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A3C8E7YVLNEQKA",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1FQ8QPXBDSKSE",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1874TBPCC8T5W",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "277",
+        "dataObject": {
+            "content": "@FoxNews He is a liar 🤥 !! Even Nancy Pelosi said Biden has No authority to forgive any student loans . It is against the law and even Pelosi will not let him!! Stop 🛑 your lies!! He is suppose to be a man of God but he is a man of Satan!!"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A28USBIN0L7MSO",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"AGAINST student loan forgiveness\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AW85O9AECMD3W",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3J5GX5I5Z0T66",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "47",
+        "dataObject": {
+            "content": "@FoxNews Gimme my student loan forgiveness and I’ll consider you to be a half decent human being"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A24XBVRMI8OR2E",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AWQMVZ41STAJX",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"FOR student loan forgiveness \"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AN4XFR2MSL0FB",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"AGAINST student loan forgiveness\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "235",
+        "dataObject": {
+            "content": "@FoxNews   regarding student loans Biden said those checks will be going out in two weeks. What the fuck is he talking about?"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1HYNQP4INMPMC",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"AGAINST student loan forgiveness\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2TBZKO2BUBH19",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1FQ8QPXBDSKSE",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "13",
+        "dataObject": {
+            "content": "@CNN Let\u0027s see how much they believe in the Constitution after the courts declare the Student Loan Forgiveness unconstitutional."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.AO6PPBKON962N",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"FOR student loan forgiveness \"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.ALDWKDNI1KS69",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A37R7V686YEV4G",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"FOR student loan forgiveness \"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "25",
+        "dataObject": {
+            "content": "@FoxNews Before the election he promised student loan forgiveness and averting the rail road strike. Looking like neither will happen. Reviewing all his non-accomplishments I can see why there are so many post here naming him the worst president ever."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2RY47ZGJWP4DW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1CU0ZXJUGTAD2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"FOR student loan forgiveness \"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1DKMOR2ZJHS2X",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"cannot judge support\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "52",
+        "dataObject": {
+            "content": "\"@FoxNews He should not just say he is going to take care of student loans, he is buying votes and lying to the American citizens\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.ANZ4YBNNFVANB",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AO6PPBKON962N",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"NEUTRAL support\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2RY47ZGJWP4DW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"FOR student loan forgiveness \"}}"
+                }
+            }
+        ]
+    }
+]
