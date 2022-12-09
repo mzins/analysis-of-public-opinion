@@ -238,8 +238,37 @@ tweet_like_count %>%
 ```
 *Where is the highest retweet reply?*
 
-*On average, does conservative or liberal sources have more likes? (after discounting the post with 5446)*
+- A tweet addressing FoxNews from someone who is against student loan forgiveness.
+```{r}
+print(final_tweets[which.max(final_tweets$tweet_likes),]$experiment_group)
+print(final_tweets[which.max(final_tweets$tweet_likes),]$text)
+print(final_tweets[which.max(final_tweets$tweet_likes),]$tweet_likes)
 
+```
+
+
+*On average, does conservative or liberal sources have more likes and retweets? (after discounting the post with 5446)*
+- NPR has the most average likes and average retweets out of all 5 sources. Replies to Foxnews are 3rd from the bottom in average tweets, even though 87% of the replies in the population belongs to them. On average its replies stand 2nd to last, beating USEdGov, who has less than 1 like on average. 
+
+```{r}
+no_max_likes <- final_tweets %>% filter(tweet_likes != 5446)
+no_max_likes <- no_max_likes %>% group_by(experiment_group) %>% 
+  summarize(avg_likes = mean(tweet_likes), agg_likes = sum(tweet_likes), 
+            avg_retweets = mean(retweets), agg_retweets = sum(retweets))
+no_max_likes
+```
+
+- When combining the liberal sources, the liberal sources on average have 30% more likes and has 6 times more average retweets than the conservative foxnews. 
+
+```{r}
+no_max_likes <- final_tweets %>% filter(tweet_likes != 5446) %>% 
+  mutate(politics = ifelse(experiment_group %in% c('cnn', 'msnbc', 'npr', 'nytimes'), 'liberal', 
+                           ifelse(experiment_group == 'usedgov', 'controlled', 'conservative')))
+no_max_likes <- no_max_likes %>% group_by(politics) %>% 
+  summarize(avg_likes = mean(tweet_likes), agg_likes = sum(tweet_likes), 
+            avg_retweets = mean(retweets), agg_retweets = sum(retweets))
+no_max_likes
+```
 
 
 ## User 
@@ -259,9 +288,43 @@ author_overlap
 
 ### `created_at`
 *Does age of account tell who they might engage with?*
+```{r}
+today <- as.Date("2022-12-08")
+
+ft <- final_tweets %>% mutate(age_dow = substr(created_at, 1, 3)
+                              , age_month_day = substr(created_at, 5, 10)
+                              , age_time = substr(created_at, 12, 19)
+                              , age_yr = substr(created_at, 26, 30), 
+                              , age_ymd = as.Date(paste0(age_month_day, age_yr), format = "%b %d %Y"),
+                              , account_age = today - age_ymd)
+
+today <- as.Date("2022-12-08")
+ft <- ft %>% mutate(account_age = today - age_ymd)
+
+print(paste("min age of acct (days): ", min(ft$account_age)))
+print(paste("max age of acct (days): ", max(ft$account_age)))
+print(paste("mean age of acct (days): ", mean(ft$account_age)))
+print(paste("median age of acct (days): ", median(ft$account_age)))
+
+```
+
+The youngest `account_age` is 5 days, and the oldest account is 14 years (5257 days)
+
+```{r}
+plot(ft$account_age)
+```
+While most accounts are under 3 years old, there are a handful of accounts in the 4000-5000 days range. Let's look at the text of the accounts with more than 5000 days in age. 6 accounts are over 5000 days old. Majority of them are critical to student loan forgiveness.
+
+One text https://twitter.com/jack_jackson/status/1598689928946323458 @ both NPR and FoxNews. However, the text is an original text (`in_reply_to_status_id` is N/A). Maybe it's okay to keep the `experiment_group` as NPR since mentioning them first prioritize them over Foxnews? 
+
+```{r}
+ft%>% filter(account_age > 5000) %>% select(experiment_group, text)
+```
+
 
 ### `description`
 *How many have profile descriptions?*
+
 
 ### `location`
 *How many have location display? Is one location more densed?* 
@@ -278,7 +341,6 @@ author_overlap
 *Which media sources has engagement from the most favourited tweeter?*
 ```{r}
 fav_counts_tweet <- data.frame(table(final_tweets$favourites_count)) %>% arrange(desc(Freq))
-
 ```
 
 #### `followers_count` 
@@ -291,4 +353,9 @@ None of the author is verified.
 ```{r}
 unique(final_tweets$verified)
 ```
+
+
+*Is there an reason why someone who is against student loan forgiveness would reply to fox vs. cnn or vice versa?*
+- refer to max like, why is the opposition not addressing someone? 
+
 
