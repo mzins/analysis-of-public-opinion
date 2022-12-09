@@ -5,10 +5,11 @@ December 2022
 Madelaine Zinser
 Lyn Nguyen 
 """
-import tweepy
-import os
 import csv
+import os
 from pprint import pprint
+
+import tweepy
 
 consumer_key = os.getenv("consumer_key")
 consumer_secret = os.getenv("consumer_secret")
