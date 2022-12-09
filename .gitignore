@@ -6,3 +6,4 @@ sample.csv
 .RData
 .Rhistory
 prelim_data/*
+annotations/.ipynb_checkpoints

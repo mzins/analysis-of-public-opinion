@@ -1,0 +1,1302 @@
+[
+    {
+        "datasetObjectId": "159",
+        "dataObject": {
+            "content": "@FoxNews Good   I paid my student loan off AND helped my son. Tax payer $ should not be going for this debt. Let the university’s lower their tuitions."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1874TBPCC8T5W",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A39HACG0EA9AVW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A37R7V686YEV4G",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "223",
+        "dataObject": {
+            "content": "\"@FoxNews The problem here is the ignorance of people.  You have no issue with corporate welfare but student loan forgiveness has your panties twisted.  Looking at the loudest whiners, I\u0027d say the problem isn\u0027t a \"\"what\"\" issue as much as it is a \"\"who\"\" issue.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1DKMOR2ZJHS2X",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1JSCOYCOSTL8Q",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2W2UF6S3WG0KI",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "180",
+        "dataObject": {
+            "content": "@FoxNews Here’s a novel idea why not forgive the student loans only after the student had performed 5 consecutive years working in their field of study and degree.  Or after 4 years of military service either or.  The idea that student loans should have blanket forgiveness is laughable-"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1CU0ZXJUGTAD2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3CU09QTJLVC14",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A28QOAOGHRD7PV",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "31",
+        "dataObject": {
+            "content": "@FoxNews they should work part time to pay off their student loan instead of bludging on the taxpayers"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1OFSCP5UUS1ZR",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2WPWRY4NUIZDK",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2W2UF6S3WG0KI",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "140",
+        "dataObject": {
+            "content": "\"@FoxNews Personally, it\u0027s not the student loan (SL) debt that I have a problem with...it\u0027s the 4.8-6% interest rate on SL. For a 40k bachelor\u0027s degree, nearly 6% interest is difficult to pay. If legislation changed to make interest on SL nonexistent then that\u0027d be the way to go instead.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2QUSCZS3RXGXE",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3KVVLPEHBJJ6E",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A9V3FN8FBJK0Z",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "214",
+        "dataObject": {
+            "content": "@FoxNews Nobody should make money on these student loans. The answer to all this nonsense is 0% interest"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A8OWE5ROAZ31Y",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1HYNQP4INMPMC",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A28QOAOGHRD7PV",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "167",
+        "dataObject": {
+            "content": "\"@FoxNews The answer isn\u0027t paying off existing student loans, it\u0027s capping student loans going forward. Capping student loans would bring down tuition cost dramatically.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1874TBPCC8T5W",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2LBKG5AJQM59E",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A25I77AQLIIPSX",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "106",
+        "dataObject": {
+            "content": "@FoxNews Why doesn’t Biden just pay for everyone’s student loan… and if your dumb idea ever goes thru then I want all my money back from putting my two kids through college…"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A3CU09QTJLVC14",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2SPZ2D4WBQB8I",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A28QOAOGHRD7PV",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "224",
+        "dataObject": {
+            "content": "\"@NPR ICYMI - \"\"People think that the president of the United States has the power for debt forgiveness. He does not. He can postpone. He can delay. But he does not have that power. That has to be an act of Congress.\"\"  @SpeakerPelosi , July 2021.  She was right.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1OFSCP5UUS1ZR",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A39HACG0EA9AVW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AMBZATQDG38V0",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "236",
+        "dataObject": {
+            "content": "@FoxNews What about the next group of student loans 2 years from now?   The government is supposed to be for ALL the people. Not a small group (45million)  America has 340 ish million folks.  Seems like a  30 BILLION ars kiss"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.ANZ4YBNNFVANB",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2QUSCZS3RXGXE",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A16MSUA16BXLX2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "217",
+        "dataObject": {
+            "content": "@FoxNews How about the government gives them 0% interest on their student loans for 2+ years vs having every tax payer to pay off the debt"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.ANZ4YBNNFVANB",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2LBKG5AJQM59E",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A24TITF012V8DG",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "196",
+        "dataObject": {
+            "content": "@FoxNews Why is the Student Loan forgiveness bad? Education is the best investment we have for the future."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.ANZ4YBNNFVANB",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2WPWRY4NUIZDK",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A9V3FN8FBJK0Z",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "287",
+        "dataObject": {
+            "content": "@FoxNews Warnock is trying to win votes by pushing an agenda that Biden had no authority to mandate. Student loan forgiveness  does not qualify for something that is a national emergency"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.ACXP8KHFX06KR",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2QUSCZS3RXGXE",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1HYNQP4INMPMC",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "104",
+        "dataObject": {
+            "content": "@FoxNews How about my mortgage? Can he get rid of it? Or perhaps I can send him my canceled checks from my student loans I paid? #WPE"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A3F9SDTQR4PEDY",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3JE18E13PPPSJ",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2FJE7RIBWEKSZ",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "35",
+        "dataObject": {
+            "content": "@FoxNews Meanwhile senior citizens are starving   Veterans in living a cardboard boxes.   And young people who paid off all their student loans are getting shafted"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.ACXP8KHFX06KR",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1DKMOR2ZJHS2X",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1YAHZGCONVXX6",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "308",
+        "dataObject": {
+            "content": "@FoxNews There is nothing conservative about opposing student loans  Student loans are bloated government spending putting the cost on your kids"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1OFSCP5UUS1ZR",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2RY47ZGJWP4DW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A16MSUA16BXLX2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "262",
+        "dataObject": {
+            "content": "@FoxNews Warnock knows the student loan bailout is unconstitutional unless passed by congress."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A25I77AQLIIPSX",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A9V3FN8FBJK0Z",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AMBZATQDG38V0",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "197",
+        "dataObject": {
+            "content": "@FoxNews Student loans are made through private lenders and the POTUS cannot cancel a debt owed to another.    No one can be generous with others money."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1AUIDHOA3U2UZ",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A16MSUA16BXLX2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A24TITF012V8DG",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "246",
+        "dataObject": {
+            "content": "\"@FoxNews The results of student loan forgiveness long-term could be interesting.  If lenders are left holding the bag, then they’ll never make loans for unprofitable degrees again. I’m kidding of course…this will fall on tax payers.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1AUIDHOA3U2UZ",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1CU0ZXJUGTAD2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3F9SDTQR4PEDY",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "258",
+        "dataObject": {
+            "content": "@FoxNews Warnock sounds manipulative just like Joe Biden! And the student loan forgiveness is never going to go through the supreme Court.... It\u0027s a rouse to get young voters. That\u0027s all it is!"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.ATH176GTV3ABP",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1DKMOR2ZJHS2X",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1B9DFXBGW0O06",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "3",
+        "dataObject": {
+            "content": "\"@MSNBC @MaddowBlog If you can\u0027t pay off student loans getting a job with the degree you earned, means all that time and money was pretty much wasted doesn\u0027t it?  Person A\u0027s poor choices shouldn\u0027t be person B\u0027s debt to pay off.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A3G4WDI30DSY08",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2WPWRY4NUIZDK",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A24TITF012V8DG",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "414",
+        "dataObject": {
+            "content": "\"@FoxNews Surprised you fools. Maybe next you strike before a major election, just a thought. Ask the kids who were getting 10k from student loans how trustworthy of a politician your guy Joe is.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A3CU09QTJLVC14",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2LRY3ID0PEG82",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1YAHZGCONVXX6",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "93",
+        "dataObject": {
+            "content": "\"@FoxNews Whether forgiving student loans is fair or not doesn’t matter because Democrats had (and still have) the option to forgive loans in a Constitutional manner (through legislation), but chose not to. Biden’s executive order was illegal, plain and simple\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A3F9SDTQR4PEDY",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2WPWRY4NUIZDK",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A24TITF012V8DG",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "466",
+        "dataObject": {
+            "content": "@FoxNews Just another way of screwing the taxpayers and the middle class there are no slaves alive today this is madness this is the same as paying for student loans all to screw the American people and they don\u0027t care about the homeless either"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1OFSCP5UUS1ZR",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1AUIDHOA3U2UZ",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A39HACG0EA9AVW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "130",
+        "dataObject": {
+            "content": "@FoxNews A lot of these people who complained about student loan also have the latest iPhone and all the channels on Cable TV.  Yellen is partially right."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1874TBPCC8T5W",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A39HACG0EA9AVW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A9V3FN8FBJK0Z",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "448",
+        "dataObject": {
+            "content": "@FoxNews Ok go for it buddy! How long will this go on years just this generation? Your buying votes just like joe did with student loans !"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2LRY3ID0PEG82",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3GT56HMT1JKFC",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"cannot judge importance\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2WPWRY4NUIZDK",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "21",
+        "dataObject": {
+            "content": "\"@MSNBC President Biden lied to the gullible people, who actually thought they were going to receive student loan forgiveness. 😂\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1DKMOR2ZJHS2X",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A89INEH3YEI5I",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1OFSCP5UUS1ZR",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "213",
+        "dataObject": {
+            "content": "@NPR Get all these rich people who illegally  took millions of dollars of PPP loans and got them all 100% cancelled to give the money back!!!! That money could pay off student loans that had interest rates changed and tinkered with in other fraudulent ways!!!"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A38SB70ETF43JV",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3CU09QTJLVC14",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A38MHEJ06HZ3VY",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "432",
+        "dataObject": {
+            "content": "\"@FoxNews I\u0027m all in for debt forgiveness and for working class citizens to get needed help snd relief. Why not? Our government helps the 1%, Big Pharma  corporations, NRA,... WHY NOT AMERICANS, struggling in debt, in search of the American dream..  come on now... lighten up....\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A8OWE5ROAZ31Y",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1JSCOYCOSTL8Q",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A38MHEJ06HZ3VY",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "115",
+        "dataObject": {
+            "content": "\"@FoxNews Well if you can pay off all the student loans they willingly got themselves into then I want all my credit card debt, car loans , rv loans my mortgage etc etc that I willingly got myslef into debt for wiped away as well FAIR IS FAIR\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.AN4XFR2MSL0FB",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2LRY3ID0PEG82",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3F0IB24N4G54T",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "68",
+        "dataObject": {
+            "content": "@FoxNews He trying to buy votes but who will get stuck paying these student loans the taxpayers!"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A3CU09QTJLVC14",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1AUIDHOA3U2UZ",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A16MSUA16BXLX2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "267",
+        "dataObject": {
+            "content": "@FoxNews Student loan is   one be fraud  from Biden and this  lying man"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.AN4XFR2MSL0FB",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1DYN6YGGW862S",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AMBZATQDG38V0",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"cannot judge importance\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "234",
+        "dataObject": {
+            "content": "\"@FoxNews Here is the Elephant in the Room. Biden could care less about those individuals who owe college debt. He is only pushing this, for his own benefit. The Financial institutions holding college debt at lower interest rates. Wanting to reduce student loans, for higher interest loans.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1CU0ZXJUGTAD2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2800O9D9KJ3G4",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.ATH176GTV3ABP",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "313",
+        "dataObject": {
+            "content": "@FoxNews It\u0027s all the interest charges put on student loans that is the biggest problem that no one is talking about. My 52k turned into 99k"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1CU0ZXJUGTAD2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A39HACG0EA9AVW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A9V3FN8FBJK0Z",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "205",
+        "dataObject": {
+            "content": "@FoxNews There is no right answer to whether they should or shouldn\u0027t forgive Student Loans. We all know this is a measure to create more inflation. It has nothing to do with politics. Blame the banks not one another."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2RY47ZGJWP4DW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A8OWE5ROAZ31Y",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AMBZATQDG38V0",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "94",
+        "dataObject": {
+            "content": "\"@FoxNews Dems in 2020: We want a $15 minimum wage, but the parliamentarian said no  Dems in 2022: We want student loan forgiveness, but the courts said no  Democrats love playing the victim card when THEY’RE the ones that hold power\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2RY47ZGJWP4DW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1I17D025VOTYJ",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1B9DFXBGW0O06",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "225",
+        "dataObject": {
+            "content": "\"@NPR People think that the president of the United States has the power for debt forgiveness. He does not. He can postpone. He can delay. But he does not have that power. That has to be an act of Congress.\"\"  Nancy Pelosi, July 2021.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2RY47ZGJWP4DW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A16MSUA16BXLX2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A38MHEJ06HZ3VY",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "256",
+        "dataObject": {
+            "content": "@FoxNews But debt forgiveness won\u0027t happen.  Another lie from Democrats."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.ANZ4YBNNFVANB",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2QUSCZS3RXGXE",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2KTALIV45G40L",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "361",
+        "dataObject": {
+            "content": "@FoxNews Didn’t Biden try this with student loans."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2RY47ZGJWP4DW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2QTXDKG6BI51M",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1AUIDHOA3U2UZ",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "277",
+        "dataObject": {
+            "content": "@FoxNews He is a liar 🤥 !! Even Nancy Pelosi said Biden has No authority to forgive any student loans . It is against the law and even Pelosi will not let him!! Stop 🛑 your lies!! He is suppose to be a man of God but he is a man of Satan!!"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A3F9SDTQR4PEDY",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2KTALIV45G40L",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A16MSUA16BXLX2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "103",
+        "dataObject": {
+            "content": "@FoxNews Great because I don’t wanna pay anybody’s student loan. You take out a loan you pay the damn thing back yourself"
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1874TBPCC8T5W",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AN4XFR2MSL0FB",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A25I77AQLIIPSX",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "10",
+        "dataObject": {
+            "content": "\"@MSNBC Did you just discover who Biden is?  Next up from MSNBC \"\"hey guys, Biden made student loans non-dischargable  as a favor to banks, can you believe this breaking news????\"\"\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2RY47ZGJWP4DW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1JSCOYCOSTL8Q",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3NL0K2586V8O",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "16",
+        "dataObject": {
+            "content": "@FoxNews This makes no sense...Ukrainian oligarchs can\u0027t vote in US elections...maybe they have outstanding student loans...."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1DKMOR2ZJHS2X",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"cannot judge importance\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A9V3FN8FBJK0Z",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2W2UF6S3WG0KI",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "11",
+        "dataObject": {
+            "content": "@FoxNews Stop Federal Funding and student loans to attend these schools."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1CU0ZXJUGTAD2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A25I77AQLIIPSX",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1HYNQP4INMPMC",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "183",
+        "dataObject": {
+            "content": "\"@FoxNews This is ridiculous.  My kids, your kids, everyone pays their student loans.  This generation of kids and the previous one  have been so spoiled.  Pay your loans.  Having someone paying your bills just doesn\u0027t give the incentive to master your education.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A39HACG0EA9AVW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.AO6PPBKON962N",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2QUSCZS3RXGXE",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "126",
+        "dataObject": {
+            "content": "\"@FoxNews BS!!! Let them pay it off like the rest of us have!!! I had great satisfaction when I made my final student loan payment! Some lean years, but I paid it off in full. Simple math; your borrow, you pay back!!\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2RY47ZGJWP4DW",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A3CU09QTJLVC14",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1HYNQP4INMPMC",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "179",
+        "dataObject": {
+            "content": "\"@FoxNews You need to give to get. If you don’t want to pay for college, join the military. If you want college debt forgiveness, join the military. By serving you country, your country will serve you.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2KTALIV45G40L",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A16MSUA16BXLX2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A38MHEJ06HZ3VY",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "189",
+        "dataObject": {
+            "content": "@FoxNews Let’s file a Class Action suit against the Federal Government for predatory lending on students and settle the suit with Student loan Forgiveness.  Come on!  The SCOTUS had not issue with forgiving much larger debts of FOR PROFIT corporations and allow many to forgo taxes."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A1JSCOYCOSTL8Q",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2SPZ2D4WBQB8I",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A28QOAOGHRD7PV",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "312",
+        "dataObject": {
+            "content": "@nytimes Turn off the interest. There\u0027s no way in this world I\u0027m ever going to be able to pay off my student loan. And with the balance being what it is I would never be able to refinance it."
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.A2800O9D9KJ3G4",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A16MSUA16BXLX2",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A1AUIDHOA3U2UZ",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Not important at all\"}}"
+                }
+            }
+        ]
+    },
+    {
+        "datasetObjectId": "264",
+        "dataObject": {
+            "content": "\"@FoxNews Any lie the Dems give has to sound like $$$ to poor people. The problem is student debt forgiveness of up to $10,000 won\u0027t be helpful to those poor students. It\u0027s too small an amount to pay for a college education in a full-term college in the USA. It\u0027s sad to see the deceit.\""
+        },
+        "annotations": [
+            {
+                "workerId": "public.us-east-1.AN4XFR2MSL0FB",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Very important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.A2QTXDKG6BI51M",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            },
+            {
+                "workerId": "public.us-east-1.ACXP8KHFX06KR",
+                "annotationData": {
+                    "content": "{\"crowd-classifier\":{\"label\":\"Somewhat important\"}}"
+                }
+            }
+        ]
+    }
+]
