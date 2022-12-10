@@ -1,0 +1,1349 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Explore Twitter Data},
+  pdfauthor={Lyn Nguyen},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Explore Twitter Data}
+\author{Lyn Nguyen}
+\date{2022-12-07}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+\hypertarget{elt}{%
+\section{ELT}\label{elt}}
+
+This script uses output from analysis-of-public-opinion/scraper.py.
+Ultimately, we keep data pulled on Dec
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# created\_at to date and day of week }
+\NormalTok{test }\OtherTok{=} \FunctionTok{head}\NormalTok{(tweets1) }
+\NormalTok{dow }\OtherTok{\textless{}{-}} \FunctionTok{substr}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{created\_at, }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{month\_day }\OtherTok{\textless{}{-}} \FunctionTok{substr}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{created\_at, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{time}\OtherTok{\textless{}{-}} \FunctionTok{substr}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{created\_at, }\DecValTok{12}\NormalTok{, }\DecValTok{19}\NormalTok{)}
+\NormalTok{yr }\OtherTok{\textless{}{-}} \FunctionTok{substr}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{created\_at, }\DecValTok{26}\NormalTok{, }\DecValTok{30}\NormalTok{)}
+
+\NormalTok{ymd }\OtherTok{\textless{}{-}} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(month\_day, yr), }\AttributeTok{format =} \StringTok{"\%b \%d \%h:\%m:\%s \%Y"}\NormalTok{)}
+
+\CommentTok{\# as.Date(test$created\_at, format = "\%a \%b \%d \%h:\%m:\%s +0000 \%Y")}
+\NormalTok{tweets1 }\OtherTok{\textless{}{-}}\NormalTok{ tweets1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{dow =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{month\_day =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{time =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{12}\NormalTok{, }\DecValTok{19}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{yr =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{26}\NormalTok{, }\DecValTok{30}\NormalTok{), }
+\NormalTok{                              , }\AttributeTok{ymd =} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(month\_day, yr), }\AttributeTok{format =} \StringTok{"\%b \%d \%Y"}\NormalTok{))}
+\NormalTok{tweets2 }\OtherTok{\textless{}{-}}\NormalTok{ tweets2 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{dow =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{month\_day =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{time =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{12}\NormalTok{, }\DecValTok{19}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{yr =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{26}\NormalTok{, }\DecValTok{30}\NormalTok{), }
+\NormalTok{                              , }\AttributeTok{ymd =} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(month\_day, yr), }\AttributeTok{format =} \StringTok{"\%b \%d \%Y"}\NormalTok{))}
+\NormalTok{tweets3 }\OtherTok{\textless{}{-}}\NormalTok{ tweets3 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{dow =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{month\_day =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{time =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{12}\NormalTok{, }\DecValTok{19}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{yr =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{26}\NormalTok{, }\DecValTok{30}\NormalTok{), }
+\NormalTok{                              , }\AttributeTok{ymd =} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(month\_day, yr), }\AttributeTok{format =} \StringTok{"\%b \%d \%Y"}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{tweet\_id\_char =} \FunctionTok{as.character}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(tweet\_id)))}
+\NormalTok{tweets4 }\OtherTok{\textless{}{-}}\NormalTok{ tweets4 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{dow =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{month\_day =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{time =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{12}\NormalTok{, }\DecValTok{19}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{yr =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{26}\NormalTok{, }\DecValTok{30}\NormalTok{), }
+\NormalTok{                              , }\AttributeTok{ymd =} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(month\_day, yr), }\AttributeTok{format =} \StringTok{"\%b \%d \%Y"}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{tweet\_id\_char =} \FunctionTok{as.character}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(tweet\_id)))}
+\FunctionTok{summary}\NormalTok{(tweets1}\SpecialCharTok{$}\NormalTok{ymd) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+## "2022-11-26" "2022-12-01" "2022-12-01" "2022-12-01" "2022-12-03" "2022-12-03"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(tweets2}\SpecialCharTok{$}\NormalTok{ymd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+## "2022-11-26" "2022-12-01" "2022-12-01" "2022-12-01" "2022-12-03" "2022-12-03"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(tweets3}\SpecialCharTok{$}\NormalTok{ymd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+## "2022-11-27" "2022-12-01" "2022-12-02" "2022-12-02" "2022-12-03" "2022-12-05"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(tweets4}\SpecialCharTok{$}\NormalTok{ymd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+## "2022-11-28" "2022-12-01" "2022-12-01" "2022-12-01" "2022-12-03" "2022-12-03"
+\end{verbatim}
+
+\texttt{tweets1.csv} has data from 11/26/2022 but only cnn as liberal
+source. \texttt{tweet2.csv}: 11/26- 12/3 but only cnn as liberal source
+\texttt{tweet3.csv}: 11/28- 12/3 liberal sources has cnn, npr, msnbc,
+nytimes, \texttt{tweet4.csv}: 11/28- 12/3 but only cnn as liberal source
+
+\texttt{tweets1} and \texttt{tweets2} have 814 fields total, but only
+468 unique.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{master }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(tweets3, tweets4) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{experiment\_id) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{master} has 471 points, but
+\texttt{length(unique(master\$tweet\_id))} has 468 points. Where is the
+3 difference? Since tweet4 hit the api after tweet3, some has updated
+values. For example tweet\_id ``1598304394931412992'' has 0 like in
+tweet3 but 1 like in tweet 4. If there is duplicate in tweet\_id, we
+will keep the one with the higher index.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{master }\OtherTok{\textless{}{-}}\NormalTok{ master }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tweet\_id\_char =} \FunctionTok{as.character}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(tweet\_id)))}
+\NormalTok{master\_tweet\_id }\OtherTok{\textless{}{-}}\NormalTok{ master}\SpecialCharTok{$}\NormalTok{tweet\_id\_char}
+\NormalTok{dup\_master }\OtherTok{\textless{}{-}}\NormalTok{ master\_tweet\_id[}\FunctionTok{duplicated}\NormalTok{(master\_tweet\_id) }\SpecialCharTok{==}\NormalTok{ T] }
+
+\FunctionTok{print}\NormalTok{(}\StringTok{"The duplicated tweet\_ids are:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The duplicated tweet_ids are:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dup\_master}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "1598304394931412992" "1598277959223083008" "1598411537667874816"
+\end{verbatim}
+
+3 tweets are duplicated because they have updated ``likes'' count.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dup\_val1 }\OtherTok{\textless{}{-}}\NormalTok{ master[master}\SpecialCharTok{$}\NormalTok{tweet\_id }\SpecialCharTok{==} \DecValTok{1598304394931412992}\NormalTok{, ][}\DecValTok{2}\NormalTok{,]}
+\NormalTok{dup\_val2 }\OtherTok{\textless{}{-}}\NormalTok{ master[master}\SpecialCharTok{$}\NormalTok{tweet\_id }\SpecialCharTok{==} \DecValTok{1598277959223083008}\NormalTok{, ][}\DecValTok{2}\NormalTok{,]}
+\NormalTok{dup\_val3 }\OtherTok{\textless{}{-}}\NormalTok{ master[master}\SpecialCharTok{$}\NormalTok{tweet\_id }\SpecialCharTok{==} \DecValTok{1598411537667874816}\NormalTok{, ][}\DecValTok{2}\NormalTok{,]}
+
+\NormalTok{m }\OtherTok{\textless{}{-}}\NormalTok{ master }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\NormalTok{tweet\_id }\SpecialCharTok{\%in\%}\NormalTok{ dup\_master)}
+\NormalTok{master }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(m, dup\_val1, dup\_val2, dup\_val3) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(tweet\_id) }\CommentTok{\# in ascending tweet\_id order }
+
+\CommentTok{\# write.csv(master, "prelim\_data/tweets\_master\_dec5dec6.csv")}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{get-text-and-tweet_id-only.}{%
+\subsection{\texorpdfstring{Get \texttt{text} and \texttt{tweet\_id}
+only.}{Get text and tweet\_id only.}}\label{get-text-and-tweet_id-only.}}
+
+Madelaine will use this file in SageMaker. Need to keep row orders for
+annotation output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tweet\_text }\OtherTok{\textless{}{-}}\NormalTok{ master }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(}\StringTok{"tweet\_id"}\NormalTok{, }\StringTok{"text"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{() }\CommentTok{\#468 }
+\CommentTok{\# write.csv(tweet\_text, "prelim\_data/tweet\_text\_only.csv")}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{clean-up-users.}{%
+\subsection{\texorpdfstring{Clean up
+\texttt{users}.}{Clean up users.}}\label{clean-up-users.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# What user\_id in user3 that\textquotesingle{}s not in user4? }
+\NormalTok{user4\_id }\OtherTok{\textless{}{-}}\NormalTok{ users4}\SpecialCharTok{$}\NormalTok{user\_id}
+\NormalTok{user3\_id }\OtherTok{\textless{}{-}}\NormalTok{ users3}\SpecialCharTok{$}\NormalTok{user\_id}
+
+\NormalTok{user3\_id\_only }\OtherTok{\textless{}{-}} \FunctionTok{setdiff}\NormalTok{(user3\_id, user4\_id) }\CommentTok{\#ids in user3 that\textquotesingle{}s not in user4 {-} 118 total }
+\NormalTok{user3\_profiles\_only }\OtherTok{\textless{}{-}}\NormalTok{ users3 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(user\_id }\SpecialCharTok{\%in\%}\NormalTok{ user3\_id\_only)}
+
+\NormalTok{all\_users }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(user3\_profiles\_only, users4) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{user\_id\_char =} \FunctionTok{as.character}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(user\_id))) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{() }\CommentTok{\# 459 total users }
+
+\CommentTok{\# merge users and tweets ===}
+\CommentTok{\# rename overlap column names }
+\NormalTok{tweet\_cnames }\OtherTok{\textless{}{-}} \FunctionTok{colnames}\NormalTok{(master)}
+\FunctionTok{colnames}\NormalTok{(master) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"experiment\_group"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"tweet\_id"}\NormalTok{, }\StringTok{"tweet\_likes"}\NormalTok{, }\StringTok{"retweets"}\NormalTok{,}\StringTok{"tweet\_created\_at"}\NormalTok{,}\StringTok{"user\_id"}\NormalTok{,}\StringTok{"in\_reply\_to\_status\_id"}\NormalTok{,}\StringTok{"in\_reply\_to\_user\_id"}\NormalTok{, }
+                      \StringTok{"in\_reply\_to\_screen\_name"}\NormalTok{, }\StringTok{"screen\_name"}\NormalTok{,}\StringTok{"dow"}\NormalTok{,}\StringTok{"month\_day"}\NormalTok{,}\StringTok{"time"}\NormalTok{,}\StringTok{"yr"}\NormalTok{,}\StringTok{"ymd"}\NormalTok{,}\StringTok{"tweet\_id\_char"}\NormalTok{)}
+\NormalTok{author\_cnames }\OtherTok{\textless{}{-}} \FunctionTok{colnames}\NormalTok{(all\_users)}
+
+\NormalTok{final\_tweets }\OtherTok{\textless{}{-}} \FunctionTok{left\_join}\NormalTok{(master }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(screen\_name)), all\_users, }\AttributeTok{by =} \StringTok{"user\_id"}\NormalTok{)}
+
+\FunctionTok{write.csv}\NormalTok{(final\_tweets, }\StringTok{"data/master.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 459 unique authors for these 468 tweets.
+
+\newpage
+
+\hypertarget{eda}{%
+\section{EDA}\label{eda}}
+
+\texttt{final\_tweets} have 25 columns and 468 observations (tweets).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(final\_tweets)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 468
+## Columns: 25
+## $ experiment_group        <chr> "msnbc", "msnbc", "msnbc", "msnbc", "msnbc", "~
+## $ text                    <chr> "@MSNBC @MaddowBlog “Simpleton’s defense”?  Yo~
+## $ tweet_id                <dbl> 1.596988e+18, 1.596993e+18, 1.596997e+18, 1.59~
+## $ tweet_likes             <int> 4, 0, 0, 2, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0~
+## $ retweets                <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0~
+## $ tweet_created_at        <chr> "Sun Nov 27 22:01:59 +0000 2022", "Sun Nov 27 ~
+## $ user_id                 <dbl> 1.518750e+18, 3.202809e+09, 1.409157e+08, 1.93~
+## $ in_reply_to_status_id   <dbl> 1.596987e+18, 1.596987e+18, 1.596987e+18, 1.59~
+## $ in_reply_to_user_id     <int> 2836421, 2836421, 2836421, 2836421, 2836421, 2~
+## $ in_reply_to_screen_name <chr> "MSNBC", "MSNBC", "MSNBC", "MSNBC", "MSNBC", "~
+## $ dow                     <chr> "Sun", "Sun", "Sun", "Sun", "Mon", "Mon", "Mon~
+## $ month_day               <chr> "Nov 27", "Nov 27", "Nov 27", "Nov 27", "Nov 2~
+## $ time                    <chr> "22:01:59", "22:22:27", "22:39:00", "23:13:38"~
+## $ yr                      <chr> " 2022", " 2022", " 2022", " 2022", " 2022", "~
+## $ ymd                     <date> 2022-11-27, 2022-11-27, 2022-11-27, 2022-11-2~
+## $ tweet_id_char           <chr> "1596987727953924096", "1596992880002084864", ~
+## $ created_at              <chr> "Tue Apr 26 00:33:21 +0000 2022", "Sat Apr 25 ~
+## $ description             <chr> "No name", "People following me are president ~
+## $ location                <chr> "", "Massachusetts, USA", "Washington, DC", "w~
+## $ followers_count         <int> 8, 874, 375, 537, 5, 130, 28, 200, 15, 18, 91,~
+## $ screen_name             <chr> "BigTex1022", "michael_favreau", "AlxHamiltn",~
+## $ statuses_count          <int> 2333, 30060, 33016, 60763, 1102, 1636, 1637, 1~
+## $ favourites_count        <int> 1941, 16373, 1061, 19861, 320, 586, 1414, 5190~
+## $ verified                <chr> "False", "False", "False", "False", "False", "~
+## $ user_id_char            <chr> "1518749825092788224", "3202808548", "14091571~
+\end{verbatim}
+
+\hypertarget{experiment_group-in_reply_to_screen_name}{%
+\subsection{experiment\_group /
+in\_reply\_to\_screen\_name}\label{experiment_group-in_reply_to_screen_name}}
+
+\emph{What is the share of replies to the 5 news sources? How do
+(`msnbc', `cnn', `npr', `nytimes') compare to `cnn'?} - FoxNews make up
+87\% of our data points. When it comes to the student loan forgiveness
+discussion, the Department of Education has the least engagement from
+Twitter users, at only 1\%.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{liberal }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}msnbc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cnn\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}npr\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}nytimes\textquotesingle{}}\NormalTok{)}
+\NormalTok{conservative }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}foxnews\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{source\_count }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(final\_tweets}\SpecialCharTok{$}\NormalTok{in\_reply\_to\_screen\_name)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Proportion =} \FunctionTok{round}\NormalTok{(Freq}\SpecialCharTok{/}\FunctionTok{nrow}\NormalTok{(final\_tweets), }\DecValTok{2}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(Freq)}
+\NormalTok{source\_count}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Var1 Freq Proportion
+## 1 usedgov    6       0.01
+## 2 nytimes    8       0.02
+## 3     CNN   12       0.03
+## 4     NPR   13       0.03
+## 5   MSNBC   21       0.04
+## 6 FoxNews  408       0.87
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(source\_count}\SpecialCharTok{$}\NormalTok{Freq)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{explore_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\hypertarget{tweet}{%
+\subsection{Tweet}\label{tweet}}
+
+\hypertarget{text}{%
+\subsubsection{\texorpdfstring{\texttt{text}}{text}}\label{text}}
+
+\emph{Is tweet length a distinguishable characteristic for the
+experiment groups?} Within the liberal groups, most of NPR replies have
+over 40 words. NYTimes's reply lengths are scattered on the lower end.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{final\_tweets }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{text\_length =} \FunctionTok{nchar}\NormalTok{(text), }
+                                      \AttributeTok{text\_word\_count =} \FunctionTok{str\_count}\NormalTok{(text, }\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{w+\textquotesingle{}}\NormalTok{))}
+
+
+\NormalTok{l }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(experiment\_group }\SpecialCharTok{\%in\%}\NormalTok{ liberal) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(experiment\_group, text\_length, text\_word\_count)}
+
+\NormalTok{colors }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"\#FDAE61"}\NormalTok{, }\CommentTok{\# Orange}
+            \StringTok{"\#D9EF8B"}\NormalTok{, }\CommentTok{\# Light green}
+            \StringTok{"\#66BD63"}\NormalTok{) }\CommentTok{\# Darker green}
+\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ l}\SpecialCharTok{$}\NormalTok{text\_word\_count}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ l}\SpecialCharTok{$}\NormalTok{text\_length}
+\NormalTok{group }\OtherTok{\textless{}{-}}\NormalTok{ l}\SpecialCharTok{$}\NormalTok{experiment\_group}
+\CommentTok{\# Scatter plot}
+\FunctionTok{ggplot}\NormalTok{(l, }\FunctionTok{aes}\NormalTok{(x, y, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(group))) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Word Count"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Text Length"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{explore_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets}\SpecialCharTok{$}\NormalTok{text\_word\_count}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets}\SpecialCharTok{$}\NormalTok{text\_length}
+\NormalTok{group }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets}\SpecialCharTok{$}\NormalTok{experiment\_group}
+\FunctionTok{ggplot}\NormalTok{(final\_tweets, }\FunctionTok{aes}\NormalTok{(x, y, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(group))) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Word Count"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Text Length"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{explore_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# how does nchar treat emojis? {-} no. }
+\NormalTok{test }\OtherTok{=}\NormalTok{ final\_tweets[}\DecValTok{463}\NormalTok{,] }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\StringTok{"text\_word\_count"}\NormalTok{, }\StringTok{"text\_length"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tweet-popularity}{%
+\subsubsection{Tweet Popularity}\label{tweet-popularity}}
+
+\hypertarget{retweets-experiment_group}{%
+\paragraph{\texorpdfstring{\texttt{retweets} \&
+\texttt{experiment\_group}}{retweets \& experiment\_group}}\label{retweets-experiment_group}}
+
+\emph{Which tweet has more \texttt{retweets}? Does it happen more often
+on liberal or conservative outlet?} One tweet has 85 retweets, one have
+5 retweets, three have 3 retweets but the majority 447 (96\%) do not
+have any retweets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{retweet\_count }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(final\_tweets}\SpecialCharTok{$}\NormalTok{retweets)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(Freq))}
+\FunctionTok{colnames}\NormalTok{(retweet\_count) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"retweets"}\NormalTok{, }\StringTok{"freq"}\NormalTok{)}
+\NormalTok{retweet\_count}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   retweets freq
+## 1        0  447
+## 2        1   16
+## 3        2    3
+## 4        5    1
+## 5       85    1
+\end{verbatim}
+
+\emph{Which outlet has posts with more than 1 retweet? } Foxnews and NPR
+are the two sources where replies have over 1 retweet, with Foxnews
+holding the highest, 85 retweets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{many\_retweets }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(retweets }\SpecialCharTok{\textgreater{}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(experiment\_group, retweets, screen\_name)}
+\NormalTok{many\_retweets}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   experiment_group retweets     screen_name
+## 1          foxnews       85   RastelliSteve
+## 2          foxnews        2      bamakeyman
+## 3              npr        5      mkurzawasc
+## 4              npr        2      Dollerhide
+## 5          foxnews        2 VT_Jeff_RE_Life
+\end{verbatim}
+
+\hypertarget{tweet_likes-experiment_group}{%
+\paragraph{\texorpdfstring{\texttt{tweet\_likes} \&
+\texttt{experiment\_group}}{tweet\_likes \& experiment\_group}}\label{tweet_likes-experiment_group}}
+
+\emph{Which tweet has more \texttt{likes}? Does it happen more often on
+liberal or conservative outlet?} One post has 5446 likes, but the
+majority (308 out of 478) have 0 likes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tweet\_like\_count }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(final\_tweets}\SpecialCharTok{$}\NormalTok{tweet\_likes)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(Freq))}
+\FunctionTok{colnames}\NormalTok{(tweet\_like\_count) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"likes\_count"}\NormalTok{, }\StringTok{"freq"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{Where is the highest retweet reply?} - A tweet addressing FoxNews
+from someone who is against student loan forgiveness.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(final\_tweets[}\FunctionTok{which.max}\NormalTok{(final\_tweets}\SpecialCharTok{$}\NormalTok{tweet\_likes),]}\SpecialCharTok{$}\NormalTok{experiment\_group)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "foxnews"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(final\_tweets[}\FunctionTok{which.max}\NormalTok{(final\_tweets}\SpecialCharTok{$}\NormalTok{tweet\_likes),]}\SpecialCharTok{$}\NormalTok{text)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "@FoxNews Joe, you cannot spend money without Congress approval. Student loan is not a National Security issue. Have them get a job and pay their own billls like others had to do!"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(final\_tweets[}\FunctionTok{which.max}\NormalTok{(final\_tweets}\SpecialCharTok{$}\NormalTok{tweet\_likes),]}\SpecialCharTok{$}\NormalTok{tweet\_likes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5446
+\end{verbatim}
+
+\emph{On average, does conservative or liberal sources have more likes
+and retweets? (after discounting the post with 5446)} - NPR has the most
+average likes and average retweets out of all 5 sources. Replies to
+Foxnews are 3rd from the bottom in average tweets, even though 87\% of
+the replies in the population belongs to them. On average its replies
+stand 2nd to last, beating USEdGov, who has less than 1 like on average.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{no\_max\_likes }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(tweet\_likes }\SpecialCharTok{!=} \DecValTok{5446}\NormalTok{)}
+\NormalTok{no\_max\_likes }\OtherTok{\textless{}{-}}\NormalTok{ no\_max\_likes }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(experiment\_group) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{avg\_likes =} \FunctionTok{mean}\NormalTok{(tweet\_likes), }\AttributeTok{agg\_likes =} \FunctionTok{sum}\NormalTok{(tweet\_likes), }
+            \AttributeTok{avg\_retweets =} \FunctionTok{mean}\NormalTok{(retweets), }\AttributeTok{agg\_retweets =} \FunctionTok{sum}\NormalTok{(retweets))}
+\NormalTok{no\_max\_likes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 5
+##   experiment_group avg_likes agg_likes avg_retweets agg_retweets
+##   <chr>                <dbl>     <int>        <dbl>        <int>
+## 1 cnn                  2.25         27       0.0833            1
+## 2 foxnews              1.23        502       0.0369           15
+## 3 msnbc                1.48         31       0.143             3
+## 4 npr                  8.23        107       0.615             8
+## 5 nytimes              2.5          20       0                 0
+## 6 usedgov              0.833         5       0                 0
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  When combining the liberal sources, the liberal sources on average
+  have 30\% more likes and has 6 times more average retweets than the
+  conservative foxnews.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{no\_max\_likes }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(tweet\_likes }\SpecialCharTok{!=} \DecValTok{5446}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{politics =} \FunctionTok{ifelse}\NormalTok{(experiment\_group }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}cnn\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}msnbc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}npr\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}nytimes\textquotesingle{}}\NormalTok{), }\StringTok{\textquotesingle{}liberal\textquotesingle{}}\NormalTok{, }
+                           \FunctionTok{ifelse}\NormalTok{(experiment\_group }\SpecialCharTok{==} \StringTok{\textquotesingle{}usedgov\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}controlled\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}conservative\textquotesingle{}}\NormalTok{)))}
+\NormalTok{no\_max\_likes }\OtherTok{\textless{}{-}}\NormalTok{ no\_max\_likes }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(politics) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{avg\_likes =} \FunctionTok{mean}\NormalTok{(tweet\_likes), }\AttributeTok{agg\_likes =} \FunctionTok{sum}\NormalTok{(tweet\_likes), }
+            \AttributeTok{avg\_retweets =} \FunctionTok{mean}\NormalTok{(retweets), }\AttributeTok{agg\_retweets =} \FunctionTok{sum}\NormalTok{(retweets))}
+\NormalTok{no\_max\_likes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 5
+##   politics     avg_likes agg_likes avg_retweets agg_retweets
+##   <chr>            <dbl>     <int>        <dbl>        <int>
+## 1 conservative     1.23        502       0.0369           15
+## 2 controlled       0.833         5       0                 0
+## 3 liberal          3.43        185       0.222            12
+\end{verbatim}
+
+\hypertarget{user}{%
+\subsection{User}\label{user}}
+
+\hypertarget{screen_name}{%
+\subsubsection{\texorpdfstring{\texttt{screen\_name}}{screen\_name}}\label{screen_name}}
+
+\emph{1. Which author has multiple replies? Do they reply to the same
+source or not?}
+
+\begin{itemize}
+\tightlist
+\item
+  8 people replied twice, 2 of which to multiple news source twitters,
+  but only 1 engage with conservative (FoxNews) and liberal (MSNBC).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{author\_multtweet }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(final\_tweets}\SpecialCharTok{$}\NormalTok{screen\_name)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Freq }\SpecialCharTok{\textgreater{}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(Var1))}
+
+\NormalTok{author\_overlap }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(screen\_name }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"DahlmanCarl"}\NormalTok{, }\StringTok{"fabulosi\_t"}\NormalTok{, }\StringTok{"jackSpa81774793"}\NormalTok{, }\StringTok{"johnbutler410"}\NormalTok{, }\StringTok{"michael\_favreau"}\NormalTok{, }\StringTok{"PCopposition"}\NormalTok{, }\StringTok{"RogerWPetersen1"}\NormalTok{, }\StringTok{"thomaslew13"}\NormalTok{ )) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(in\_reply\_to\_screen\_name, screen\_name, statuses\_count, favourites\_count, followers\_count, tweet\_likes, retweets)}
+
+\NormalTok{author\_overlap }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    in_reply_to_screen_name     screen_name statuses_count favourites_count
+## 1                    MSNBC michael_favreau          30060            16373
+## 2                    MSNBC RogerWPetersen1           1636              586
+## 3                  FoxNews     thomaslew13           6530                0
+## 4                  nytimes jackSpa81774793            243                5
+## 5                  FoxNews     thomaslew13           6530                0
+## 6                    MSNBC michael_favreau          30060            16373
+## 7                  FoxNews     DahlmanCarl           2626             1336
+## 8                  FoxNews     DahlmanCarl           2626             1336
+## 9                      CNN jackSpa81774793            243                5
+## 10                 FoxNews    PCopposition             59                0
+## 11                 FoxNews    PCopposition             59                0
+## 12                 usedgov      fabulosi_t           5125             5527
+## 13                 usedgov      fabulosi_t           5125             5527
+## 14                 FoxNews RogerWPetersen1           1636              586
+## 15                 FoxNews   johnbutler410           1637              166
+## 16                 FoxNews   johnbutler410           1637              166
+##    followers_count tweet_likes retweets
+## 1              874           0        0
+## 2              130           0        0
+## 3               12           0        0
+## 4                2           0        0
+## 5               12           0        0
+## 6              874           0        0
+## 7                2           1        0
+## 8                2           0        0
+## 9                2           0        0
+## 10               0           1        0
+## 11               0           1        0
+## 12              72           1        0
+## 13              72           0        0
+## 14             130           1        0
+## 15             184           7        0
+## 16             184           0        0
+\end{verbatim}
+
+\hypertarget{created_at}{%
+\subsubsection{\texorpdfstring{\texttt{created\_at}}{created\_at}}\label{created_at}}
+
+\emph{Does age of account tell who they might engage with?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{today }\OtherTok{\textless{}{-}} \FunctionTok{as.Date}\NormalTok{(}\StringTok{"2022{-}12{-}08"}\NormalTok{)}
+
+\NormalTok{ft }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{age\_dow =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{age\_month\_day =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{age\_time =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{12}\NormalTok{, }\DecValTok{19}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{age\_yr =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{26}\NormalTok{, }\DecValTok{30}\NormalTok{), }
+\NormalTok{                              , }\AttributeTok{age\_ymd =} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(age\_month\_day, age\_yr), }\AttributeTok{format =} \StringTok{"\%b \%d \%Y"}\NormalTok{),}
+\NormalTok{                              , }\AttributeTok{account\_age =}\NormalTok{ today }\SpecialCharTok{{-}}\NormalTok{ age\_ymd)}
+
+\NormalTok{today }\OtherTok{\textless{}{-}} \FunctionTok{as.Date}\NormalTok{(}\StringTok{"2022{-}12{-}08"}\NormalTok{)}
+\NormalTok{ft }\OtherTok{\textless{}{-}}\NormalTok{ ft }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{account\_age =}\NormalTok{ today }\SpecialCharTok{{-}}\NormalTok{ age\_ymd)}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"min age of acct (days): "}\NormalTok{, }\FunctionTok{min}\NormalTok{(ft}\SpecialCharTok{$}\NormalTok{account\_age)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "min age of acct (days):  5"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"max age of acct (days): "}\NormalTok{, }\FunctionTok{max}\NormalTok{(ft}\SpecialCharTok{$}\NormalTok{account\_age)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "max age of acct (days):  5257"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"mean age of acct (days): "}\NormalTok{, }\FunctionTok{mean}\NormalTok{(ft}\SpecialCharTok{$}\NormalTok{account\_age)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "mean age of acct (days):  1184.82905982906"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"median age of acct (days): "}\NormalTok{, }\FunctionTok{median}\NormalTok{(ft}\SpecialCharTok{$}\NormalTok{account\_age)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "median age of acct (days):  268.5"
+\end{verbatim}
+
+The youngest \texttt{account\_age} is 5 days, and the oldest account is
+14 years (5257 days)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(ft}\SpecialCharTok{$}\NormalTok{account\_age)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{explore_files/figure-latex/unnamed-chunk-21-1.pdf}
+While most accounts are under 3 years old, there are a handful of
+accounts in the 4000-5000 days range. Let's look at the text of the
+accounts with more than 5000 days in age. 6 accounts are over 5000 days
+old. Majority of them are critical to student loan forgiveness.
+
+One text
+\url{https://twitter.com/jack_jackson/status/1598689928946323458} @ both
+NPR and FoxNews. However, the text is an original text
+(\texttt{in\_reply\_to\_status\_id} is N/A). Maybe it's okay to keep the
+\texttt{experiment\_group} as NPR since mentioning them first prioritize
+them over Foxnews?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ft }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(account\_age }\SpecialCharTok{\textgreater{}} \DecValTok{5000}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(experiment\_group, text)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   experiment_group
+## 1          foxnews
+## 2              npr
+## 3          foxnews
+## 4              npr
+## 5          foxnews
+## 6          foxnews
+##                                                                                                                                                                                                                                                                                  text
+## 1                                                                                                                          @FoxNews A lot of these people who complained about student loan also have the latest iPhone and all the channels on Cable TV.  Yellen is partially right.
+## 2                       @NPR How about, in the meantime, Congress just rewrites the law that makes student loan debt so hard to discharge through bankruptcy.\n\nThen start figuring out ways to make the universities more liable for their education that ends up being not useful.
+## 3                                                                                                                               @FoxNews It might be legal to do what Biden wants to do with student loans, but ONLY if Congress approves it first, NOT the way he's trying to do it.
+## 4 @npr @foxnews @dnc @gop Our Constitution requires that all ins and outs of the Treasury originate as bills in the House. Student Loan forgiveness does change that flow in a very minuscule way - $400B over the lifetime of the loans, say a guesstimated total Federal budgets of
+## 5                                                                                                                                                                                                             @FoxNews Student loan is   one be fraud  from Biden and this  lying man
+## 6                              @FoxNews Yeah... no... I'm not paying anything extra for that barista's $200K PoliSi or Gender studies or Humanities student loans. If they want to earn a living wage then they probably need to be doing something other than taking a coffee order.
+\end{verbatim}
+
+\hypertarget{description}{%
+\subsubsection{\texorpdfstring{\texttt{description}}{description}}\label{description}}
+
+\emph{How many have profile descriptions?} More than half of the
+tweeters don't have an account profile description. Are the share of
+those with and without description proportional based on who they reply
+to?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{has\_profile\_desc =} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{nchar}\NormalTok{(description) }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)) )}\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(has\_profile\_desc) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{agg\_profile\_desc =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   has_profile_desc agg_profile_desc
+##              <dbl>            <int>
+## 1                0              248
+## 2                1              220
+\end{verbatim}
+
+\hypertarget{location}{%
+\subsubsection{\texorpdfstring{\texttt{location}}{location}}\label{location}}
+
+\emph{How many have profile location display? Is one location more
+dense?}
+
+Most of the tweets belong to tweeter with no locations (66\%).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{has\_profile\_loc=} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{nchar}\NormalTok{(location) }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)) )}\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(has\_profile\_loc) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{agg\_profile\_loc =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   has_profile_loc agg_profile_loc
+##             <dbl>           <int>
+## 1               0             312
+## 2               1             156
+\end{verbatim}
+
+\hypertarget{ymd-dow}{%
+\subsubsection{\texorpdfstring{\texttt{ymd} \&
+\texttt{dow}}{ymd \& dow}}\label{ymd-dow}}
+
+\emph{Which day of the week do people discuss student loan forgiveness
+the most often?} Recall that data is from Sunday 11/27 - Tuesday
+12/6Thursdays and Saturdays get the most tweets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(dow) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{tweet\_count =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7 x 2
+##   dow   tweet_count
+##   <chr>       <int>
+## 1 Fri            62
+## 2 Mon            30
+## 3 Sat           114
+## 4 Sun            89
+## 5 Thu           153
+## 6 Tue            14
+## 7 Wed             6
+\end{verbatim}
+
+\emph{bar plot of tweet count by day} 5 of 9 days have fewer than 20
+tweets. Thursday Dec.~1st makes up 33\% of all tweets. On Dec 1st,
+Supreme Court announced they will expedite the process. -
+\url{https://www.nytimes.com/2022/12/01/us/politics/supreme-court-student-loan-forgiveness.html}
+-
+\url{https://www.washingtonpost.com/politics/2022/12/01/supreme-court-review-student-loan-forgiveness/}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ymd\_data }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(ymd) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{tweet\_count =} \FunctionTok{n}\NormalTok{())}
+
+\FunctionTok{barplot}\NormalTok{(}\AttributeTok{height =}\NormalTok{ ymd\_data}\SpecialCharTok{$}\NormalTok{tweet\_count, }\AttributeTok{names =}\NormalTok{ (ymd\_data}\SpecialCharTok{$}\NormalTok{ymd))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{explore_files/figure-latex/unnamed-chunk-26-1.pdf}
+\#\#\# \texttt{time}
+
+\emph{What time of day has the most discussion?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{time }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{hour =} \FunctionTok{substr}\NormalTok{(time, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\NormalTok{time\_gr }\OtherTok{\textless{}{-}}\NormalTok{ time }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(hour) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{freq\_by\_hr =} \FunctionTok{n}\NormalTok{())}
+\NormalTok{time\_gr}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 24 x 2
+##    hour  freq_by_hr
+##    <chr>      <int>
+##  1 00            19
+##  2 01            23
+##  3 02            16
+##  4 03            16
+##  5 04            11
+##  6 05            13
+##  7 06            10
+##  8 07             8
+##  9 08             2
+## 10 09             2
+## # ... with 14 more rows
+## # i Use `print(n = ...)` to see more rows
+\end{verbatim}
+
+\emph{bar plot of tweet count by hour} Tweets on this topic lulls
+between 8-10 am. The afternoon has the highest engagement, with a
+decrease before commuting time, and an rise right after.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(}\AttributeTok{height =}\NormalTok{ time\_gr}\SpecialCharTok{$}\NormalTok{freq\_by\_hr, }\AttributeTok{names =}\NormalTok{ (time\_gr}\SpecialCharTok{$}\NormalTok{hour))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{explore_files/figure-latex/unnamed-chunk-28-1.pdf}
+
+\emph{bar plot with multiple colors for conservative vs.~liberal}
+
+8pm is a popular time for engagement within our control and liberal
+groups.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{final\_tweets }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{hour =} \FunctionTok{substr}\NormalTok{(time, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }
+         \AttributeTok{politics =} \FunctionTok{ifelse}\NormalTok{(experiment\_group }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}cnn\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}msnbc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}npr\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}nytimes\textquotesingle{}}\NormalTok{), }\StringTok{\textquotesingle{}liberal\textquotesingle{}}\NormalTok{, }
+                           \FunctionTok{ifelse}\NormalTok{(experiment\_group }\SpecialCharTok{==} \StringTok{\textquotesingle{}usedgov\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}controlled\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}conservative\textquotesingle{}}\NormalTok{)))}
+\NormalTok{stacked\_time }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(politics, hour) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{Freq =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'politics'. You can override using the
+## `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(stacked\_time, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill=}\NormalTok{politics, }\AttributeTok{y=}\NormalTok{Freq, }\AttributeTok{x=}\NormalTok{hour)) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position=}\StringTok{"stack"}\NormalTok{, }\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{explore_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+\emph{Is the 8pm mostly due to the Supreme Court announcement on
+Dec.1st?} Yes, Dec 1st makes up over 50\% of total tweets at 8pm.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dec1\_stacked\_time }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(ymd }\SpecialCharTok{==} \StringTok{"2022{-}12{-}01"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(politics, hour) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{Freq =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'politics'. You can override using the
+## `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dec1\_stacked\_time, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill=}\NormalTok{politics, }\AttributeTok{y=}\NormalTok{Freq, }\AttributeTok{x=}\NormalTok{hour)) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position=}\StringTok{"stack"}\NormalTok{, }\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{explore_files/figure-latex/unnamed-chunk-30-1.pdf}
+
+\hypertarget{user-popularity}{%
+\subsubsection{User Popularity}\label{user-popularity}}
+
+\hypertarget{favourites_count-followers_count}{%
+\paragraph{\texorpdfstring{\texttt{favourites\_count} \&
+\texttt{followers\_count}}{favourites\_count \& followers\_count}}\label{favourites_count-followers_count}}
+
+\textbf{Which media sources has engagement from the most favorite
+tweeter?}
+
+Tweeters engaging with liberal news source had 5 times more profile
+favorites and 3.6 times more followers, on average. Although fewer
+tweets addressed the controlled sources, they have more followers on
+average than accounts engaging in both conservative and liberal media.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fav\_counts\_tweet }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(final\_tweets}\SpecialCharTok{$}\NormalTok{favourites\_count)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(Freq))}
+
+\NormalTok{fc }\OtherTok{\textless{}{-}}\NormalTok{ final\_tweets }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#filter(tweet\_likes != 5446) \%\textgreater{}\% }
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{politics =} \FunctionTok{ifelse}\NormalTok{(experiment\_group }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}cnn\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}msnbc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}npr\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}nytimes\textquotesingle{}}\NormalTok{), }\StringTok{\textquotesingle{}liberal\textquotesingle{}}\NormalTok{, }
+                           \FunctionTok{ifelse}\NormalTok{(experiment\_group }\SpecialCharTok{==} \StringTok{\textquotesingle{}usedgov\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}controlled\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}conservative\textquotesingle{}}\NormalTok{)))}
+\NormalTok{fc }\OtherTok{\textless{}{-}}\NormalTok{ fc }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(politics) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{avg\_fav =} \FunctionTok{mean}\NormalTok{(favourites\_count), }\AttributeTok{agg\_likes =} \FunctionTok{sum}\NormalTok{(favourites\_count), }
+            \AttributeTok{avg\_followers =} \FunctionTok{mean}\NormalTok{(followers\_count), }\AttributeTok{agg\_retweets =} \FunctionTok{sum}\NormalTok{(followers\_count))}
+\NormalTok{fc}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 5
+##   politics     avg_fav agg_likes avg_followers agg_retweets
+##   <chr>          <dbl>     <int>         <dbl>        <int>
+## 1 conservative   4024.   1641955          86.1        35144
+## 2 controlled    10502.     63013         360.          2157
+## 3 liberal       20764.   1121263         309.         16681
+\end{verbatim}
+
+\hypertarget{verified}{%
+\paragraph{\texorpdfstring{\texttt{verified}}{verified}}\label{verified}}
+
+\textbf{Are there any verified accounts? If so, where did they engage
+with?} None of the author is verified.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{unique}\NormalTok{(final\_tweets}\SpecialCharTok{$}\NormalTok{verified)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "False"
+\end{verbatim}
+
+\newpage
+
+\hypertarget{eda---with-annotations}{%
+\section{EDA - with annotations}\label{eda---with-annotations}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{annotated }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"data/master\_annotated.csv"}\NormalTok{)}
+\FunctionTok{glimpse}\NormalTok{(annotated)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 468
+## Columns: 35
+## $ X                                     <int> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10~
+## $ experiment_id                         <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1~
+## $ experiment_group                      <chr> "msnbc", "msnbc", "msnbc", "msnb~
+## $ text                                  <chr> "@MSNBC @MaddowBlog “Simpleton’s~
+## $ tweet_id                              <dbl> 1.596988e+18, 1.596993e+18, 1.59~
+## $ tweet_likes                           <int> 4, 0, 0, 2, 1, 0, 0, 0, 1, 1, 0,~
+## $ retweets                              <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,~
+## $ tweet_created_at                      <chr> "Sun Nov 27 22:01:59 +0000 2022"~
+## $ user_id                               <dbl> 1.518750e+18, 3.202809e+09, 1.40~
+## $ in_reply_to_status_id                 <dbl> 1.596987e+18, 1.596987e+18, 1.59~
+## $ in_reply_to_user_id                   <int> 2836421, 2836421, 2836421, 28364~
+## $ in_reply_to_screen_name               <chr> "MSNBC", "MSNBC", "MSNBC", "MSNB~
+## $ dow                                   <chr> "Sun", "Sun", "Sun", "Sun", "Mon~
+## $ month_day                             <chr> "Nov 27", "Nov 27", "Nov 27", "N~
+## $ time                                  <chr> "22:01:59", "22:22:27", "22:39:0~
+## $ yr                                    <int> 2022, 2022, 2022, 2022, 2022, 20~
+## $ ymd                                   <chr> "2022-11-27", "2022-11-27", "202~
+## $ tweet_id_char                         <dbl> 1.596988e+18, 1.596993e+18, 1.59~
+## $ created_at                            <chr> "Tue Apr 26 00:33:21 +0000 2022"~
+## $ description                           <chr> "No name", "People following me ~
+## $ location                              <chr> "", "Massachusetts, USA", "Washi~
+## $ followers_count                       <int> 8, 874, 375, 537, 5, 130, 28, 20~
+## $ screen_name                           <chr> "BigTex1022", "michael_favreau",~
+## $ statuses_count                        <int> 2333, 30060, 33016, 60763, 1102,~
+## $ favourites_count                      <int> 1941, 16373, 1061, 19861, 320, 5~
+## $ verified                              <chr> "False", "False", "False", "Fals~
+## $ user_id_char                          <dbl> 1.518750e+18, 3.202809e+09, 1.40~
+## $ text_length                           <int> 183, 114, 148, 226, 159, 93, 136~
+## $ text_word_count                       <int> 30, 20, 20, 46, 27, 12, 22, 40, ~
+## $ opinion_key                           <int> 2, 1, 2, 1, 0, 2, 1, 2, 2, 0, 2,~
+## $ opinion_label                         <chr> "AGAINST student loan forgivenes~
+## $ opinion_annotation_confidence         <dbl> 0.70, 0.62, 0.43, 0.51, 0.88, 0.~
+## $ ego_involvement_key                   <int> 1, 3, 2, 3, 1, 2, 0, 0, 0, 1, 2,~
+## $ ego_involvement_label                 <chr> "Somewhat important", "cannot ju~
+## $ ego_involvement_annotation_confidence <dbl> 0.95, 0.65, 0.81, 0.53, 0.69, 0.~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# split up (profile) created\_at, today = 12/8/22}
+\NormalTok{annotated }\OtherTok{\textless{}{-}}\NormalTok{ annotated }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{age\_dow =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{age\_month\_day =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{age\_time =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{12}\NormalTok{, }\DecValTok{19}\NormalTok{)}
+\NormalTok{                              , }\AttributeTok{age\_yr =} \FunctionTok{substr}\NormalTok{(created\_at, }\DecValTok{26}\NormalTok{, }\DecValTok{30}\NormalTok{), }
+\NormalTok{                              , }\AttributeTok{age\_ymd =} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(age\_month\_day, age\_yr), }\AttributeTok{format =} \StringTok{"\%b \%d \%Y"}\NormalTok{),}
+\NormalTok{                              , }\AttributeTok{account\_age =}\NormalTok{ today }\SpecialCharTok{{-}}\NormalTok{ age\_ymd)}
+
+\NormalTok{annotated }\OtherTok{\textless{}{-}}\NormalTok{ annotated }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{politics =} \FunctionTok{ifelse}\NormalTok{(experiment\_group }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}cnn\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}msnbc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}npr\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}nytimes\textquotesingle{}}\NormalTok{), }\StringTok{\textquotesingle{}liberal\textquotesingle{}}\NormalTok{, }
+                           \FunctionTok{ifelse}\NormalTok{(experiment\_group }\SpecialCharTok{==} \StringTok{\textquotesingle{}usedgov\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}controlled\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}conservative\textquotesingle{}}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{opinion_key-opinion_label}{%
+\subsection{\texorpdfstring{\texttt{opinion\_key} \&
+\texttt{opinion\_label}}{opinion\_key \& opinion\_label}}\label{opinion_key-opinion_label}}
+
+41\% of tweets are NEUTRAL in support of student loan forgiveness.29\%
+are AGAINST, and 26\% are FOR. Only 4\% of the tweets are undetermined
+in sentiment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{annotated }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(opinion\_label) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{count =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{proportion =} \FunctionTok{n}\NormalTok{()}\SpecialCharTok{/}\FunctionTok{nrow}\NormalTok{(annotated))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 3
+##   opinion_label                      count proportion
+##   <chr>                              <int>      <dbl>
+## 1 "AGAINST student loan forgiveness"   136     0.291 
+## 2 "cannot judge support"                19     0.0406
+## 3 "FOR student loan forgiveness "      120     0.256 
+## 4 "NEUTRAL support"                    193     0.412
+\end{verbatim}
+
+Surprisingly, engagement with liberal has higher sentiment against
+student loan forgiveness (43\%) compared to those engaging with FoxNews
+(27\%). The conservative groups replies are mostly in the NEUTRAL
+support group (43\%). \textbf{This raise the question of do people tend
+to reply to sources that they oppose (conservatives replying to liberal
+sources) or is there more dissent among those engaging with the liberal
+sources?} Both liberal and conservative sources have \textasciitilde25\%
+supportive replies for the forgiveness program.
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'politics'. You can override using the
+## `.groups` argument.
+## `summarise()` has grouped output by 'politics'. You can override using the
+## `.groups` argument.
+## `summarise()` has grouped output by 'politics'. You can override using the
+## `.groups` argument.
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 10 x 4
+## # Groups:   politics [3]
+##    politics     opinion_label                      count proportion
+##    <chr>        <chr>                              <int>      <dbl>
+##  1 conservative "AGAINST student loan forgiveness"   110     0.270 
+##  2 conservative "cannot judge support"                18     0.0441
+##  3 conservative "FOR student loan forgiveness "      103     0.252 
+##  4 conservative "NEUTRAL support"                    177     0.434 
+##  5 controlled   "AGAINST student loan forgiveness"     3     0.5   
+##  6 controlled   "FOR student loan forgiveness "        3     0.5   
+##  7 liberal      "AGAINST student loan forgiveness"    23     0.426 
+##  8 liberal      "cannot judge support"                 1     0.0185
+##  9 liberal      "FOR student loan forgiveness "       14     0.259 
+## 10 liberal      "NEUTRAL support"                     16     0.296
+\end{verbatim}
+
+Future expansion - grab the profile description of each author's
+``friend/following'' and create a threshold label on political
+affiliation based on verified profiles of those they follow. NLP through
+the profile description will also let us know if they are more left or
+right leaning. Currently, we cannot determine if the author political
+stand based on which news outlet they engage with on twitter (example
+@BUnskinkable appears to be more right leaning based on who he follows
+but he addressed @MSNBC)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{annotated }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(screen\_name }\SpecialCharTok{==} \StringTok{\textquotesingle{}BUnskinkable\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(experiment\_group, text, tweet\_id\_char, screen\_name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   experiment_group
+## 1            msnbc
+##                                                                                                             text
+## 1 @MSNBC Good, tax payers shouldn't be on the hook for the student loans. Thier decision not ours. GROW THE F UP
+##   tweet_id_char  screen_name
+## 1  1.598421e+18 BUnskinkable
+\end{verbatim}
+
+Let's flip and look at ``FOR student loan forgiveness'' on the
+conservative side. @Richard41020: ``@FoxNews Since I don't have any
+student loans I'd like for the government (Taxpayers), to payoff my
+mortgage. Where do I sign up?''
+
+Although it's categorized as FOR loan forgiveness, it is sarcasm. After
+exploring the profile, it is apparent that this author is conservative
+and does not support loan forgiveness.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{annotated }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(screen\_name }\SpecialCharTok{==} \StringTok{\textquotesingle{}Richard41020\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(experiment\_group, text, tweet\_id\_char, screen\_name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   experiment_group
+## 1          foxnews
+##                                                                                                                                 text
+## 1 @FoxNews Since I don't have any student loans I'd like for the government (Taxpayers), to payoff my mortgage.  Where do I sign up?
+##   tweet_id_char  screen_name
+## 1  1.598396e+18 Richard41020
+\end{verbatim}
+
+Let's choose another author. @TonyShockey6 is labeled as FOR forgiveness
+with .95 confidence, but it appears that his text does not support this
+annotation :(
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{annotated }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(screen\_name }\SpecialCharTok{==} \StringTok{\textquotesingle{}TonyShockey6\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(experiment\_group, text, tweet\_id\_char, screen\_name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   experiment_group
+## 1          foxnews
+##                                                                                                                                                                                                                                                                                                     text
+## 1 @FoxNews FJB &amp; your student loans!!!\nYou signed up for your student loans, so flipping pay them youself like I did!!! If he does anything he should do medical bill forgivness, people don't have a choice on medical bills. It's life we didn't sign up for hospital bills like you did for loan
+##   tweet_id_char  screen_name
+## 1  1.598437e+18 TonyShockey6
+\end{verbatim}
+
+After further skimming, it appears that a lot of these FOR student loan
+forgiveness is categorized incorrectly based on the text provided by the
+annotators.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{annotated }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(politics }\SpecialCharTok{==} \StringTok{\textquotesingle{}conservative\textquotesingle{}}\NormalTok{, opinion\_label }\SpecialCharTok{==} \StringTok{\textquotesingle{}FOR student loan forgiveness \textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(}\StringTok{\textquotesingle{}text\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                                                                                                                                                                                                                                                                                       text
+## 1                                                                                                                                 @FoxNews End the #Ukraine money grab.!! \n\nPay-off all student loans first as an investment in America’s future.! (I am 63 - Doesn’t affect me) \n—\nEnd ALL @USAID NOW
+## 2                                                                                                                                                                                                                                 @FoxNews Stop Federal Funding and student loans to attend these schools.
+## 3                                              @FoxNews Before the election he promised student loan forgiveness and averting the rail road strike. Looking like neither will happen. Reviewing all his non-accomplishments I can see why there are so many post here naming him the worst president ever.
+## 4                                                                                                                                      @FoxNews Meanwhile senior citizens are starving   Veterans in living a cardboard boxes.   And young people who paid off all their student loans are getting shafted
+## 5                                                                                                                                                                                          @FoxNews Shouldn't Biden get the same for the student loan forgiveness?  That was basically buying young votes.
+## 6                                                                                                                                                              @FoxNews Just did this to help try and get votes. Pay your student loans just like everyone else did in the past. Congress won't pass this.
+## 7                                                                                                                                                                                                      @FoxNews So everybody that has already paid their student loans should get all their money back too
+## 8                                                             @FoxNews Now I knows he’s full of it in regards to student lone debt forgiveness.If Biden thinks the same Supreme Court that overturned roe v wade is going to back him he’s nuts or he’s just blowing smoke up his base’s ass to get votes.
+## 9                                                                                                                     @FoxNews Explain to me why I should pay YOUR student loan debt when I worked two jobs to put myself through college so I would not have college debt. How is that fair in any level.
+## 10           @FoxNews The PPP loans were given to businesses that kept their employees on payroll after the government FORCED them to close shop.\n\nStudent loans are what people WILLINGLY sign up for to pay for their education. The terms are made clear before they start.\n\nThey are NOT THE SAME.
+## 11                                                                                                                                           @FoxNews If Biden really wants to help ALL Americans how about giving us all 1 year interest free from credit cards, home loans, car loans and student loans?
+## 12                                                                                                                                                                        @FoxNews I wonder how many people realize that any student loan forgiven just means we all share the cost of that person's debt.
+## 13                                                                                                                                                                                                                                                         @FoxNews Student loans is fraud there I said it
+## 14                                                                                                                                                     @FoxNews I wonder how many folks realize that Jesus addressed the basis on which many folks object to student loan forgiveness in Matthew 20: 1–16.
+## 15        @FoxNews Just remember it was your Commander in Sleep that introduced the bill that was later signed into law  thatnypu couldn't file bankruptcy on student loans, and turned the higher education game into a money making business! Want dept relief, regulate the amount a school can charge.
+## 16                                                                                                                                                                                                    @FoxNews It’s not his money to give away…..students in the past had to PAY for their student loans….
+## 17                                                                                                                                                                                                      @FoxNews i bet all those in support of student loan payback  are living at home with PARENTS HOUSE
+## 18                                                                      @FoxNews Well it looks like the President conveniently made promises to get votes. He knew student loan forgiveness was just smoke and mirrors. I see how he is blame shifting to look like the good guy for the next election. 🤣
+## 19                                                                                                        @FoxNews I love Joe Biden, but I do not believe that federal student loans should be forgiven.  That is not fair to other student loans, and not fair to kids who can’t afford to go to college.
+## 20                                                                                                                                                                                                           @FoxNews How could that be fair to people who have paid out the wazoo for their student loans
+## 21                                                                                                            @FoxNews Why am I responsible to pay for your student loan debt?  I paid for my education by extra jobs..  Oh that's right, nobody wants to work anymore and wants free government handouts.
+## 22                                                                                                                                                                                                        @FoxNews If they get studen loan forgiveness, we all get credit debt forgiveness. Same bullshit.
+## 23                                                                                                                                                                      @FoxNews Since I don't have any student loans I'd like for the government (Taxpayers), to payoff my mortgage.  Where do I sign up?
+## 24             @FoxNews Why not regulate the interest rate that can be charged on student loans. Connect it to an index and let it float. That way it’s manageable to pay, and at the same time it’s not forgiveness. It’s a middle ground.  Government can also make payments deductible. It’s a win win.
+## 25                                                                                                 @FoxNews Sure, let's just ignore how the democrats think the solution to anything is to throw money at it. Like how Biden wants to spend money so that kids won't have to pay back their student loans.
+## 26                      @FoxNews paying off student debt will only increase student tuitions;  its like attaching the Bull from behind we all know what your going get from that end of the Bull. reducing  tuition costs would do more to reduce the burden. AOC doesn't deserve student loan forgiveness
+## 27                                                                                                                                                 @FoxNews Good   I paid my student loan off AND helped my son. Tax payer $ should not be going for this debt. Let the university’s lower their tuitions.
+## 28                                                                                                                                                                                            @FoxNews Must have been all the young people who thought they we’re getting their student loans forgiven. 🙄
+## 29                                                                                                                                                                                                                                           @FoxNews So that’s why they can’t afford their student loans.
+## 30                                                                                    @FoxNews This isn’t a “student debt relief plan” it’s real name is “Studen loan reassignment plan”. It transfers the loan payments to citizens who didn’t take out a student loan. Remember this next time you VOTE!
+## 31                                                                                                                  @FoxNews Well Union Joe and his clowns sold a scram on the people with student loans to get votes then sold them out and now sold out all his Unions backers After he got their votes.
+## 32  @FoxNews FJB &amp; your student loans!!!\nYou signed up for your student loans, so flipping pay them youself like I did!!! If he does anything he should do medical bill forgivness, people don't have a choice on medical bills. It's life we didn't sign up for hospital bills like you did for loan
+## 33                            @FoxNews I can't believe how heartless. a single mom of 2. I went to college. Went to local schools. Pell grant, scholarships, still needed loans. Now I work hard supporting family, but student loan is more than car payment. Not practical or considers living expenses.
+## 34                                                                                                @FoxNews You need to give to get. If you don’t want to pay for college, join the military. If you want college debt forgiveness, join the military. By serving you country, your country will serve you.
+## 35                                                                                                                  @FoxNews Splurged by spending all that "free" money biden gave them, just like those that want their student loans paid so they can travel and eat out. That's what created inflation.
+## 36                                                                                                                                             @FoxNews If you want student loan relief, start at the colleges!  See how those liberal commie professors like it when the Gov starts setting their prices.
+## 37                                                                                                                                                @FoxNews Student loans are made through private lenders and the POTUS cannot cancel a debt owed to another.    No one can be generous with others money.
+## 38                                                                                                                                               @FoxNews I can’t see any reason why people making minimum wage should be burdened with these people’s debt forgiveness. We all need to pay our own way!!!
+## 39                                                                                                             @FoxNews How do we go about suing for those PPE loans that were forgiven?  If we can’t forgive student loan debt because it’s a burden to the taxpayers then how can PPE loans be forgiven?
+## 40                                                                                                        @FoxNews I worked hard to pay off my student loans with my degree, very thankful was able to get a loan however it was my loan to pay off , I learned that you are responsible for your own debt
+## 41                                                                                                                                                                                                                @FoxNews You should just cancel everyone's student loans who makes under $100,000 a year
+## 42                                                                                                                                                                                      @FoxNews Your a booble head Joe ! You can’t do the student loan bail out it has to go through the house and senate
+## 43          @FoxNews It’s NOT fair to payoff student loans period! They took out these loans knowing they had to repay their debts now Mt them@out on there big girl/boys panties and pay their debts back just like every American before and after them@has and will have to do! The pandemic and HEROES
+## 44                                        @FoxNews The problem here is the ignorance of people.  You have no issue with corporate welfare but student loan forgiveness has your panties twisted.  Looking at the loudest whiners, I'd say the problem isn't a "what" issue as much as it is a "who" issue.
+## 45                                                                                                                                                                                                                                           @FoxNews This s a misnomer, Student loans cannot be bankrupt.
+## 46                                                                                                                @FoxNews Then pay everyone who has or had student loans. There are those that did without to payback their loans! You you do for one they you do for all! Not fair to help only a few!!!
+## 47                                                                                                                         @FoxNews Biden's student loan forgiveness plan was simply a ploy to get midterm votes. They knew if was not legal but their plan worked, fooling countless thousands of voters.
+## 48                                                                                                     @FoxNews The thing that cracks me up is that people act like this is some new thing. All the focus all the sudden goes to this and people fight it. There has always been student loan forgiveness.
+## 49                                                                                                                                                                                 @FoxNews Those students are fully aware that Republican appointed judges are blocking Biden's college debt forgiveness.
+## 50                                                                @FoxNews The results of student loan forgiveness long-term could be interesting.  If lenders are left holding the bag, then they’ll never make loans for unprofitable degrees again. I’m kidding of course…this will fall on tax payers.
+## 51                                                                                                                                                                                     @FoxNews Everyone knows the student debt forgiveness is illegal.Get real Warnock Who you trying to play now?SMH....
+## 52                                                                                                                                                                                       @FoxNews You have been played. Student debt forgiveness wasxand is a democrap scam to trick you people for votes.
+## 53                                                                                                                                                                               @FoxNews FYI there is no debt forgiveness for college students and ther won’t be any in the future  . Biden lies as usual
+## 54                                                                                                       @FoxNews Warnock sounds manipulative just like Joe Biden! And the student loan forgiveness is never going to go through the supreme Court.... It's a rouse to get young voters. That's all it is!
+## 55            @FoxNews Listen unfortunately the college debt forgiveness won’t be available since it was not properly approved and gone through the proper channels , so again these people are voting because they think they are getting money and fooled again when they need to vote the better leader
+## 56                                                                                                                                                                                                          @FoxNews Warnock knows the student loan bailout is unconstitutional unless passed by congress.
+## 57                                                                                                                                                                                                 @FoxNews Student loan forgiveness is illegal. Pay your loan that you gave your word you would pay back.
+## 58                                                                                                                                      @FoxNews He's blowing smoke hoping they will still believe their student loans will be cancelled Biden has no authority to forgive the loans.... Smoke and mirrors
+## 59                                                                                                                                                                                                 @FoxNews Any word on the @HerschelWalker abortion debt forgiveness program for his ex girlfriends? 👂🤡
+## 60           @FoxNews I urge all of you young student voters to read the Constitution. You will find that Congress\ncontrols the purse strings not the president.Biden is \nFlat out lying about being able to forgive any student loans.All he wants is your votes to keep his corrupt \nregime in power.
+## 61      @FoxNews We have been telling you for years: THERE WILL BE NO MASS STUDENT DEBT FORGIVENESS.\n   It is not a Republican led movement to sue against it and it is not within the presidents power without Congress and Congress will not do it either. Notice how a judge ruled day after mid term?
+## 62                                                                                                                                                                                                 @FoxNews Warlocks is lying to get the young voters your not getting you student loan money back or paid
+## 63                                                            @FoxNews Student loan forgiveness probably won't survive a court challenge but vote for me because of student loan forgiveness that I had no part in implementing. Typical leftist making empty promises in search of low information votes.
+## 64                                                                                                                                                                                @FoxNews Too bad these gullable youngsters don't know that the debt forgiveness will more than likely NEVER happen...smh
+## 65                                                                                                                                           @FoxNews student loan debt forgiveness is a sham. You would think college-educated students would know that a president has no constitutional power to do it.
+## 66                                                                                                                                                                                                                     @FoxNews Yes, the republican’s bill for student loan forgiveness is much better. 🤡
+## 67   @FoxNews What a crock! Biden and his liberal operatives KNEW the alleged "Student Loan Debt Forgiveness" charade would be challenged in the U.S. Courts &amp; probably be stopped because only Congress has power to approve/disapprove, NOT the President. Biden even said  it possibly wasn't legal
+## 68                                                                                                                                                                 @FoxNews Biden’s college debt forgiveness is unconstitutional. He has no presidential authority on the matter… it’s the job of congress
+## 69                                                                                                                                                                                                                  @FoxNews Student loan forgiveness will never see light of day...Pay your own debits !!
+## 70                                                                                                                                                                  @FoxNews It amazes me that they keep believing the lies and voting for these crooks. Just like student loan relief, it is a scam. LOL.
+## 71                                                                                                                                                                                                                                                  @FoxNews Scam to get votes just like student loan debt
+## 72       @FoxNews All smoke and mirrors just like the student loan forgiveness. They want to sway certain people to vote democrat for the next election. I guarantee this won't go through. Why? Because for over 30 years it's been at this point and never happened. Keep on being used up and bamboozle
+## 73                                                                                                                                     @FoxNews WTF really???\nBuying votes.                                  Student loan forgiveness                  Open border                            Reparations
+## 74                                                                                       @FoxNews The ultra left wing liberal is trying to buy votes the same way Biden tried with his unconstitutional action on the student loan waiver. With them, the desired result is justifiable by any means used.
+## 75                                                                                                                                                                                                                            @FoxNews Yet you have people complaining about the student loan bailout lol.
+## 76                                                                                                                                                                          @FoxNews Just another bait and switch like the student loan payoff scam. They are trying to get the African American vote back
+## 77                                                                                                                             @FoxNews Absolutely absurd.  This wil NEVER happen.  Newsome looking for the black vote just like Biden knew student debt forgiveness was illegal. It's all about the vote.
+## 78                                                                                                                              @FoxNews I thought Democrats were going to fix the infrastructure. Oh, that was just a lying promise to get votes, just like the student loan promise. Never gonna happen.
+## 79                                                                                 @FoxNews So Warnock is campaigning on a lie that will never come to fruition. Student Loan Debt will Not be forgiven. Where's the IRS in this by the way? Yep that's definitely someone I want in Congress. Don't you??
+## 80                               @FoxNews Newsome knows this will be overturned by the Supreme Court. Just like the student loan thing Biden pushed. He playing politics. It will be overturned …then he blames republicans. Oh…see here my evidence that Republicans are racist… they keep playing games.
+## 81                                                           @FoxNews This is just another "Buy-Your-Vote" (BYV) scam. Just like the Student Loan Debt forgiveness plan. It will be brought to the courts and determined to be illegal and the reparations will never be paid. Wake up y'all! Just sayin'.
+## 82                                                                  @FoxNews Biden has the msm covering for him and suppressing negative stories. Biden buys votes through reparations and student loan relief. Biden gains votes by labeling minorities as victims. Biden gets votes by demonizing Trump.
+## 83                                                                                                                                                                                                 @FoxNews He’s going to pay reparations the same way Biden did the student loans. Buying votes😂😂😂🙌🏻
+## 84                                                              @FoxNews This is how Needsome is preparing for a presidential run; it’s a democrat lie, but just like they promised to pay off student loans it mobilizes a voting block.  Some people will fall for anything.  A sucker born every minute
+## 85                                                                                                                                                                                                                                                    @FoxNews Just like student loan forgiveness rotflmao
+## 86                                                                                                                                                                                                                        @FoxNews We need to pay off this guy's student loan debt so he won't be so angry
+## 87                                                                                                                                                                                                                                                       @FoxNews Lol just like student loans all lies #🤡
+## 88                                                                                                                                                                                                                                                 @FoxNews It's not debt forgiveness.  It's debt transfer
+## 89                                                                                                                                                                                                 @FoxNews Just another lie to get votes!  Remember student loan forgiveness, cancelled after midterms…..
+## 90                                                                                                                                        @FoxNews Once again, the Democrats are trying to buy the black vote, when they know damn well the proposal would never pass… just like student loan debt relief!
+## 91                 @FoxNews Another example of a corrupt government redistributing the people's personal wealth. This is theft, just like student loan forgiveness. Maybe the people of #California will start voting RED if this passes. I hope so, because I don't want those quacks moving to MY State!
+## 92                                                                                                                    @FoxNews I guess enough Black Californians have stopped voting for Democrats that they feel they need to bribe them to do so.  Kind of like Ol’ Joe’s student loan forgiveness scam.
+## 93                                                                                                                                                                         @FoxNews Who's paying for all this, the rest of America, why only Californian's. Sounds like Biden's student loan promise scam.
+## 94                                                                                                  @FoxNews Here we go again selling black people dreams for their vote, once they get your vote, you get the excuses why reparations won’t happen,, just like Roe V Wade, &amp; student loan forgiveness
+## 95                                                                                                                                                                                                                          @FoxNews And does she expect her student loans forgiven at tax payers expense?
+## 96                                                                                                                                                                                                                                                   @FoxNews Yet they freeze the student loan forgiveness
+## 97        @FoxNews Yep a record in high gas prices border crossing inflation industry layoffs National and International embarrassments baby formula shortage lying about the trip to Saudi Arabia the Railroad Strike student loan and most importantly being the crappiest president in American history
+## 98                                                                                                                                                                   @FoxNews Another way to buy votes. If one were to have a student loan they may be able to double dip. Still another way to buy votes!
+## 99                                                                                                                                                                     @FoxNews Dems have bought votes before (see Automakers bailout and Student Loan “forgiveness”), but never at this high a price tag!
+## 100                                                                                                                                                                                                                          @FoxNews Rather see student loan forgiveness for 90,000 and under not 125,000
+## 101                                                                                                                                                                                      @FoxNews I'm guessing everyone on here who doesn't have usable reading skills wants their student loans forgiven?
+## 102                                                                                                                                                                                                                                                        @FoxNews Sounds like the student loan vote buy,
+## 103                                                                                                                                                               @FoxNews He still trying to get college students to vote with the promise of student loans...Democrats will say anything to get votes...
+\end{verbatim}
+
+\textbf{bar plot of sentiment (bottom) and colored by ego involvement (2
+one for each side of politic)}
+
+\hypertarget{opinion_annotation_confidence}{%
+\subsection{\texorpdfstring{\texttt{opinion\_annotation\_confidence}}{opinion\_annotation\_confidence}}\label{opinion_annotation_confidence}}
+
+\textbf{What is the average of the confidence? What is the average of
+confidence of each annotated categories? What is the confidence for each
+news source? }
+
+\hypertarget{ego_involvement_label}{%
+\subsection{\texorpdfstring{\texttt{ego\_involvement\_label}}{ego\_involvement\_label}}\label{ego_involvement_label}}
+
+75\% of the tweets are from authors who find that student loan
+forgiveness issue is at least somewhat important. Only 15\% have low ego
+involvement.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{annotated }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(ego\_involvement\_label) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{count =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{proportion =} \FunctionTok{n}\NormalTok{()}\SpecialCharTok{/}\FunctionTok{nrow}\NormalTok{(annotated))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 3
+##   ego_involvement_label   count proportion
+##   <chr>                   <int>      <dbl>
+## 1 cannot judge importance    47      0.100
+## 2 Not important at all       70      0.150
+## 3 Somewhat important        182      0.389
+## 4 Very important            169      0.361
+\end{verbatim}
+
+\hypertarget{ego_involvement_annotation_confidence}{%
+\subsection{\texorpdfstring{\texttt{ego\_involvement\_annotation\_confidence}}{ego\_involvement\_annotation\_confidence}}\label{ego_involvement_annotation_confidence}}
+
+\emph{Give summary of the stand}
+
+\emph{What is the stand of the ``older twitter accounts''?}
+
+\emph{Stacked bar plot on views on student loans and how it matches up
+against \texttt{experiment\_group}} ggplot(stacked\_time,
+aes(fill=politics, y=Freq, x=hour)) + geom\_bar(position=``stack'',
+stat=``identity'')
+
+\textbf{Is there an reason why someone who is against student loan
+forgiveness would reply to fox vs.~cnn or vice versa?} - refer to max
+likes, why is the opposition not addressing someone?
+
+\end{document}

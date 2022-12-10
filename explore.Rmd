@@ -440,13 +440,86 @@ annotated <- annotated %>% mutate(age_dow = substr(created_at, 1, 3)
                               , age_yr = substr(created_at, 26, 30), 
                               , age_ymd = as.Date(paste0(age_month_day, age_yr), format = "%b %d %Y"),
                               , account_age = today - age_ymd)
+
+annotated <- annotated %>% mutate(politics = ifelse(experiment_group %in% c('cnn', 'msnbc', 'npr', 'nytimes'), 'liberal', 
+                           ifelse(experiment_group == 'usedgov', 'controlled', 'conservative')))
 ```
 
 ## `opinion_key` & `opinion_label`
 
+41% of tweets are NEUTRAL in support of student loan forgiveness.29% are AGAINST, and 26% are FOR. Only 4% of the tweets are undetermined in sentiment. 
+```{r}
+annotated %>% group_by(opinion_label) %>% summarize(count = n(), proportion = n()/nrow(annotated))
+```
+
+Surprisingly, engagement with liberal has higher sentiment against student loan forgiveness (43%) compared to those engaging with FoxNews (27%). The conservative groups replies are mostly in the NEUTRAL support group (43%). **This raise the question of do people tend to reply to sources that they oppose (conservatives replying to liberal sources) or is there more dissent among those engaging with the liberal sources?** Both liberal and conservative sources have ~25% supportive replies for the forgiveness program. 
+
+```{r echo=FALSE}
+rbind(
+  rbind(
+            annotated %>% filter(politics == 'conservative') %>% 
+              group_by(politics,opinion_label) %>% summarize(count = n()) %>% mutate(proportion = count/sum(count)),
+            annotated %>% filter(politics == 'liberal') %>% 
+              group_by(politics,opinion_label) %>% summarize(count = n()) %>% mutate(proportion = count/sum(count))
+            ),
+  annotated %>% filter(politics == 'controlled') %>% 
+    group_by(politics,opinion_label) %>% summarize(count = n()) %>% mutate(proportion = count/sum(count))
+  ) %>% arrange(politics, opinion_label)
+```
+
+Future expansion - grab the profile description of each author’s “friend/following” and create a threshold label on political affiliation based on verified profiles of those they follow. NLP through the profile description will also let us know if they are more left or right leaning. Currently, we cannot determine if the author political stand based on which news outlet they engage with on twitter (example @BUnskinkable appears to be more right leaning based on who he follows but he addressed @MSNBC)
+
+```{r}
+annotated %>% filter(screen_name == 'BUnskinkable') %>% select(experiment_group, text, tweet_id_char, screen_name)
+```
+
+Let's flip and look at "FOR student loan forgiveness" on the conservative side. 
+@Richard41020: "@FoxNews Since I don't have any student loans I'd like for the government (Taxpayers), to payoff my mortgage.  Where do I sign up?"
+
+Although it's categorized as FOR loan forgiveness, it is sarcasm. After exploring the profile, it is apparent that this author is conservative and does not support loan forgiveness. 
+
+```{r}
+annotated %>% filter(screen_name == 'Richard41020') %>% select(experiment_group, text, tweet_id_char, screen_name)
+```
+
+Let's choose another author. @TonyShockey6 is labeled as FOR forgiveness with .95 confidence, but it appears that his text does not support this annotation :( 
+```{r}
+annotated %>% filter(screen_name == 'TonyShockey6') %>% select(experiment_group, text, tweet_id_char, screen_name)
+
+```
+
+After further skimming, it appears that a lot of these FOR student loan forgiveness is categorized incorrectly based on the text provided by the annotators. 
+
+```{r}
+annotated %>% filter(politics == 'conservative', opinion_label == 'FOR student loan forgiveness ') %>% select('text')
+```
+
+**What is the `opinion_annotation_confidence` for each opinion and `politics` group? **
+
+```{r}
+annotated %>% group_by(politics, opinion_label) %>% summarize(AVG_opinion_annotation_confidence = mean(opinion_annotation_confidence))
+
+```
+
+## `ego_involvement_label`
+
+75% of the tweets are from authors who find that student loan forgiveness issue is at least somewhat important. Only 15% have low ego involvement. 
+
+```{r}
+annotated %>% group_by(ego_involvement_label) %>% summarize(count = n(), proportion = n()/nrow(annotated))
+
+```
+
 ## `opinion_annotation_confidence`
 
-## `ego_involvment_label`
+**What is the average of the confidence? What is the average of confidence of each annotated categories? What is the confidence for each news source? **
+
+Our observations above that many of the text care incorrectly identified in opinion on student loan forgiveness program. We forgo answer the questions above and pivot to looking at how NLP and built in sentiment analysis fair against SageMaker's Mechanical Turks. 
+
+
+
+
+# Excess 
 
 ## `ego_involvement_annotation_confidence`
 *Give summary of the stand*
@@ -456,8 +529,6 @@ annotated <- annotated %>% mutate(age_dow = substr(created_at, 1, 3)
 *Stacked bar plot on views on student loans and how it matches up against `experiment_group`*
 ggplot(stacked_time, aes(fill=politics, y=Freq, x=hour)) + 
     geom_bar(position="stack", stat="identity")
-
-
 
 **Is there an reason why someone who is against student loan forgiveness would reply to fox vs. cnn or vice versa?**
 - refer to max likes, why is the opposition not addressing someone? 
