@@ -1,0 +1,310 @@
+---
+title: "Student Loan Twitter Data"
+date: '2022-12-10'
+output:
+  pdf_document: 
+    toc: true
+    toc_depth: 4
+  html_document: 
+    toc: true
+    toc_depth: 4
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = F)
+library(dplyr)
+library(lubridate)
+library(stringr)
+library(ggplot2)
+```
+This script's input data uses 5 annotators. Preliminary EDA on the variables are in `explore.Rmd`.
+
+
+```{r}
+tweets = read.csv("data/master_annotated_2.csv")
+```
+
+### Extract Age of the Twitter Accounts
+```{r}
+today <- as.Date("2022-12-10")
+
+# FORMATTING AGE
+tweets <- tweets %>% mutate(age_dow = substr(created_at, 1, 3)
+                              , age_month_day = substr(created_at, 5, 10)
+                              , age_time = substr(created_at, 12, 19)
+                              , age_yr = substr(created_at, 26, 30), 
+                              , age_ymd = as.Date(paste0(age_month_day, age_yr), format = "%b %d %Y"),
+                              , account_age = today - age_ymd)
+
+# FORMATTING LIBERAL VS CONSERVATIVE 
+tweets <-tweets %>%  mutate(politics = ifelse(experiment_group %in% c('cnn', 'msnbc', 'npr', 'nytimes'), 'liberal', 
+                           ifelse(experiment_group == 'usedgov', 'controlled', 'conservative')))
+
+
+print(paste("min age of acct (days): ", min(tweets$account_age)))
+print(paste("max age of acct (days): ", max(tweets$account_age)))
+print(paste("mean age of acct (days): ", mean(tweets$account_age)))
+print(paste("median age of acct (days): ", median(tweets$account_age)))
+```
+
+The youngest `account_age` is 7 days, and the oldest account is 14 years (5259 days). 
+
+**How many accounts are younger than 2 weeks?**
+
+4% (19) of the accounts are younger than two weeks old, and all of them address @foxnews. 
+
+```{r}
+tweets %>% filter(account_age < 14) %>% group_by(experiment_group) %>% summarize(younger_than_two_weeks = n())
+```
+
+**What are these 19 accounts sentiment towards student loan forgiveness plan?**
+
+10 have neutral support, 5 supports and 4 are against. We will look into the tweets to verify further. 
+
+
+```{r}
+tweets %>% filter(account_age < 14) %>% group_by(experiment_group, opinion_label) %>% summarize(younger_than_two_weeks = n())
+```
+
+Given the low agreement score from the annotation, it's expected that the tweets aren't clear cut for/against/neutral on student loan. 
+```{r}
+tweets %>% filter(account_age < 14) %>% select(text, opinion_label) %>% arrange(opinion_label)
+```
+
+**How many friends/followers do these 19 accounts have?**
+
+Given that they're so new to Twitter, we are unsure if they are actual accounts engaging in discourse on Twitter or bots. 
+
+```{r eval=FALSE, include=FALSE}
+tweets %>% filter(account_age < 14) %>% 
+  select(screen_name, statuses_count, favourites_count, followers_count, account_age)
+```
+**How about accounts 30 days old?** 
+44 accounts are 30 days or younger. 39 of them addressed foxnews and 5 replies to liberal sources. 
+```{r eval=FALSE, include=FALSE}
+tweets %>% filter(account_age < 30) %>% group_by(experiment_group, opinion_label) %>% summarize(younger_than_two_weeks = n())
+```
+
+
+
+# Research Questions: 
+
+## **A) Is the engagement more polarized when they are engaging/associating with conservative sources (Fox) or liberal sources (CNN, MSNBC, NPR, NYTimes)?** 
+
+### Polarization regarding topic
+```{r}
+# install.packages("reshape2")
+library(reshape2)
+c <- tweets %>% group_by(opinion_label, ego_involvement_label) %>% summarize(n = n())
+c
+p <- dcast(c , opinion_label~ego_involvement_label)
+p <- p[c(1, 4, 3, 2),]
+p
+```
+
+The topic of student loan: 
+*BASELINE*
+- Very Important against  : 46 
+- Somewhat important against : 58  
+- Not at all important against : 5 
+- Neutral : 213 
+- Not at all important for : 6 
+- Somewhat important for : 62 
+- Very important for : 54 
+
+On aggregate, the population discussion student loan is not polarized. There are more neutrals (213) than support and opposition, and as we go towards the extreme ends, the totals decrease (58--> 46 support, 62--> 54 opposition)
+
+We will use the information above as our base. Next, we focus in on the liberal and conservative sources. 
+
+```{r}
+tweets %>% group_by(politics) %>% summarize(n = n(), pct = n/nrow(tweets))
+```
+
+For context, in our 468 data points on student loan tweets, conservative accounts has over 7 times the engagement than liberal accounts. 87% address the conservative source (@FoxNews) and 12% are from our 4 liberal sources. In short, when it comes to Student Loan Forgiveness, more tweeters engage with the conservative media. (With this knowledge, potential interventions of the conversation could on interventions with accounts engaging with conservative news.)
+
+
+### Conservative opinion
+
+```{r}
+c <- tweets %>% filter(politics == "conservative") %>% 
+  group_by(opinion_label, ego_involvement_label) %>% summarize(n = n())
+p <- dcast(c , opinion_label~ego_involvement_label)
+p <- p[c(1, 4, 3, 2),]
+p
+```
+*CONSERVATIVE ENGAGEMENT*
+- Very Important against  : 41
+- Somewhat important against : 55  
+- Not at all important against : 5 
+- Neutral : 180
+- Not at all important for : 5
+- Somewhat important for : 52
+- Very important for : 45
+
+Similar to the polarization of the topic overall, within conservative engagement, majority lays within the "neutral", and as we move out towards the two ends, opposition decreases from 55 to 41 and support decreases from 52 to 45. 
+
+
+
+
+### LIBERAL ENGAGEMENT 
+```{r}
+c <- tweets %>% filter(politics == "liberal") %>% 
+  group_by(opinion_label, ego_involvement_label) %>% summarize(n = n())
+p <- dcast(c , opinion_label~ego_involvement_label)
+p <- p[c(1, 4, 3, 2),]
+p
+```
+
+*LIBERAL ENGAGEMENT*
+- Very Important against  : 5
+- Somewhat important against : 3
+- Not at all important against : N/A
+- Neutral : 25
+- Not at all important for : 1
+- Somewhat important for : 8
+- Very important for : 9
+
+
+
+
+
+# Other EDA Notes 
+
+
+```{r}
+c <- tweets %>% filter(politics == 'conservative') 
+c <- c %>% group_by(opinion_label) %>% summarize(n = n(), pct = n/nrow(c))
+c
+```
+
+Based on the annotations, 45% are neutral in support for Student Loan Forgiveness plan. This dataset holds ambiguous tweets as well as those where opinion are only extractable if the annotators understand the social context of the sarcastic Ambiguous tweets on this subject does populate the dataset. Here are some examples: "@FoxNews So that’s why they can’t afford their student loans.", "@FoxNews I don’t believe there’s going to be any student loan forgiveness.", "@FoxNews My mortgage identified as a student loan."
+
+Those engaging with FoxNews are both equally in support and against the policy according to the annotators. 
+
+Democrats are more polarized 
+
+Polarizing: neutral vs. non-neutral; low ego involvement vs. high ego involvement. The more people care a lot about a answer, and if within that population, the both answers (yes and no).
+
+If total population  - 
+
+```{r}
+
+```
+
+
+## E) Are there non-US-based accounts engaging in the student loan conversation. 
+
+- Does not support. 66% of the tweets do not have a location tag. 10% of the 66% are meaningless locations ("where ever there's oil", "My house", "in your head, MIA, etc.). One account is under "Durban, South Africa". However, it is obvious that the location variable is unreliable. 
+
+```{r}
+(tweets %>% mutate(has_profile_loc = ifelse(nchar(location) == 0, 0, 1)) ) %>% group_by(has_profile_loc) %>% summarize(agg_profile_loc = n())
+```
+
+```{r}
+location <- tweets %>% filter((nchar(location) > 0)) %>% select(location) # 156 
+# data.frame(table(location))
+
+# 16 non-sense 
+# the world	, 1
+# where ever there's oil	, 1
+# Podunk Missery, 1
+# MIA, 1
+# my house, 1
+# in your head, 1
+# By By 1
+# Earth (3 different versions), 5 people 
+# God's Earth Country/ God's Green Earth, 2
+# cucina povera, 1
+# Frenchmens Bayou, 1
+
+# Durban, South Africa
+```
+
+
+### Liberal opinion
+
+```{r}
+l <- tweets %>% filter(politics == 'liberal') 
+l <- l %>% group_by(opinion_label) %>% summarize(n = n(), pct = n/nrow(l))
+l
+```
+
+Liberal sources have 46% in neutral support, very close to conservative sources (45%). Generally, Republicans are against the forgiveness plan, and Democrats are either for it or the topic isn't important in their voting decision. Our hypothesis is that tweets associated with Democratic news sources would have more polarization in support; we would see more neutral or lack of support. However, against our hypothesis, Democratic sites have less polarizing opinion. 33% are in support of student loan forgiveness and only 15% are against the plan. 
+
+
+### Controlled opinion 
+
+```{r}
+nu <- tweets %>% filter(politics == 'controlled') 
+nu <- nu %>% group_by(opinion_label) %>% summarize(n = n(), pct = n/nrow(nu))
+nu
+```
+
+Department of Education, our neutral source, has 6 tweets total where 4 of which are neutral, and none of them are against student loan forgiveness. This makes sense since those engaging with the Dept of Edu tend to request more information on when they can expect information. Some of the tweets are: 
+
+- "@usedgov why are my student loans not transferring from Nelnet to Mohela? I got approved for PSLF months ago and haven’t heard a word since July. Can someone please do their job??" 
+
+- "@usedgov Wait times for customer service @MOHELA are currently 4 HOURS. This organization does not have the capacity to provide federal student loan service. Please investigate."
+
+
+```{r}
+tweets %>% filter(politics == 'controlled') %>% select(text)
+```
+
+```{r}
+
+```
+
+
+# Some multi colorerd bar plot here
+
+
+
+# visual ideas, neutral get 3 bars, which is averaged out..
+
+
+
+
+
+## **B) Is there consistency in opinion across tweets that include the 3 groups in their conversation?**
+	
+## **C) Is there consistency in polarization across tweets that include the 3 groups in their conversation?** 
+	
+## **D) Does one page get more engagement over the other?**  
+
+- Yes, Fox News dominates with 87% of the tweets addressing them. 
+
+## **F) What concentrations of replies are by authors who engage with both new sources?**
+
+- Only 9 tweeters posted twice in this dataset. Only one engages with both liberal and conservative sources (RogerWPetersen1). From his tweets, this account appears to not support the plan while the annotators believe that his opinion is neutral. We learn that only about 0.2% would "cross-tweet" about this topic, although his opinion is consistent.
+
+```{r}
+
+dup_sn <- tweets[duplicated(tweets$screen_name) ,] %>% select( screen_name)
+(tweets %>% filter(screen_name %in% as.vector(dup_sn$screen_name)) %>% select(screen_name, politics, experiment_group) %>% arrange(screen_name))
+tweets %>% filter(screen_name == 'RogerWPetersen1') %>% select(screen_name, text, opinion_label)
+
+```
+
+
+##Brainstorm notes for analysis: 
+A) Is the engagement opinions more polarized when they are engaging/associating with conservative sources or liberal sources CNN?  
+
+- The opinion on student loan forgiveness is more polarized on liberal sources than on conservative sources.  ....
+
+D) Does one page get more engagement over the other?  
+
+- Yes. Although our data only has 1 conservative source, 87% of the tweets are engaging with conservative sources. That is over 7 times the amount of foot traffic of the 4 liberal sources combined. With this knowledge, potential interventions of the conversation could focus on accounts that tweet @FoxNews.
+
+
+E) Are there non-US-based accounts engaging in the student loan conversation.
+
+- Does not support. 66% of the tweets do not have a location tag. 10% of the 66% are meaningless locations ("where ever there's oil", "My house", "in your head, MIA, etc.). One account is under "Durban, South Africa". However, it is obvious that the location variable is unreliable.
+
+
+F) What concentrations of replies are by authors who engage with both news sources?  
+
+- 9 tweeters posted twice in this dataset, and one engages with both liberal and conservative sources (RogerWPetersen1). We learn that only about 0.2% would "cross-tweet" about this topic, although his opinion is consistent. This tells us that individuals discussing student loan forgiveness on Twitter in less of an intellectual back and forth discourse. In other words, many of these posts are "to tell" rather than "to listen".
+
+

@@ -12,7 +12,7 @@ output:
     number_sections: true
 ---
 
-
+This script uses data from 3 annotators. 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning = F)
@@ -88,6 +88,7 @@ master <- rbind(tweets3, tweets4) %>% select(-experiment_id) %>% distinct()
 ```
 
 `master` has 471 points, but `length(unique(master$tweet_id))` has 468 points. Where is the 3 difference? Since tweet4 hit the api after tweet3, some has updated values. For example tweet_id "1598304394931412992" has 0 like in tweet3 but 1 like in tweet 4. If there is duplicate in tweet_id, we will keep the one with the higher index. 
+
 
 ```{r}
 master <- master %>% mutate(tweet_id_char = as.character(as.numeric(tweet_id)))
@@ -494,12 +495,6 @@ After further skimming, it appears that a lot of these FOR student loan forgiven
 annotated %>% filter(politics == 'conservative', opinion_label == 'FOR student loan forgiveness ') %>% select('text')
 ```
 
-**What is the `opinion_annotation_confidence` for each opinion and `politics` group? **
-
-```{r}
-annotated %>% group_by(politics, opinion_label) %>% summarize(AVG_opinion_annotation_confidence = mean(opinion_annotation_confidence))
-
-```
 
 ## `ego_involvement_label`
 
