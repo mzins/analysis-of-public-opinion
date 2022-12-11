@@ -18,6 +18,8 @@ library(lubridate)
 library(stringr)
 library(ggplot2)
 ```
+
+\newpage
 This script's input data uses 5 annotators. Preliminary EDA on the variables are in `explore.Rmd`.
 
 
@@ -25,8 +27,9 @@ This script's input data uses 5 annotators. Preliminary EDA on the variables are
 tweets = read.csv("data/master_annotated_2.csv")
 ```
 
-### Extract Age of the Twitter Accounts
-```{r}
+```{r include=FALSE}
+
+### SOME CLEANING 
 today <- as.Date("2022-12-10")
 
 # FORMATTING AGE
@@ -41,48 +44,49 @@ tweets <- tweets %>% mutate(age_dow = substr(created_at, 1, 3)
 tweets <-tweets %>%  mutate(politics = ifelse(experiment_group %in% c('cnn', 'msnbc', 'npr', 'nytimes'), 'liberal', 
                            ifelse(experiment_group == 'usedgov', 'controlled', 'conservative')))
 
-
+```
+```{r eval=FALSE, include=FALSE}
 print(paste("min age of acct (days): ", min(tweets$account_age)))
 print(paste("max age of acct (days): ", max(tweets$account_age)))
 print(paste("mean age of acct (days): ", mean(tweets$account_age)))
 print(paste("median age of acct (days): ", median(tweets$account_age)))
+
+# NOTE: The youngest `account_age` is 7 days, and the oldest account is 14 years (5259 days). 
+
 ```
 
-The youngest `account_age` is 7 days, and the oldest account is 14 years (5259 days). 
+```{r eval=FALSE, include=FALSE}
+# **How many accounts are younger than 2 weeks?**
+# NOTE: 4% (19) of the accounts are younger than two weeks old, and all of them address @foxnews. 
 
-**How many accounts are younger than 2 weeks?**
-
-4% (19) of the accounts are younger than two weeks old, and all of them address @foxnews. 
-
-```{r}
 tweets %>% filter(account_age < 14) %>% group_by(experiment_group) %>% summarize(younger_than_two_weeks = n())
 ```
 
-**What are these 19 accounts sentiment towards student loan forgiveness plan?**
+```{r eval=FALSE, include=FALSE}
+#*What are these 19 accounts sentiment towards student loan forgiveness plan?*
+#NOTE: 10 have neutral support, 5 supports and 4 are against. We will look into the tweets to verify further. 
 
-10 have neutral support, 5 supports and 4 are against. We will look into the tweets to verify further. 
-
-
-```{r}
 tweets %>% filter(account_age < 14) %>% group_by(experiment_group, opinion_label) %>% summarize(younger_than_two_weeks = n())
 ```
 
-Given the low agreement score from the annotation, it's expected that the tweets aren't clear cut for/against/neutral on student loan. 
-```{r}
+```{r eval=FALSE, include=FALSE}
+# NOTES: Given the low agreement score from the annotation, it's expected that the tweets aren't clear cut for/against/neutral on student loan. 
+
 tweets %>% filter(account_age < 14) %>% select(text, opinion_label) %>% arrange(opinion_label)
 ```
 
-**How many friends/followers do these 19 accounts have?**
-
-Given that they're so new to Twitter, we are unsure if they are actual accounts engaging in discourse on Twitter or bots. 
-
 ```{r eval=FALSE, include=FALSE}
+# **How many friends/followers do these 19 accounts have?**
+# Given that they're so new to Twitter, we are unsure if they are actual accounts engaging in discourse on Twitter or bots. 
+
 tweets %>% filter(account_age < 14) %>% 
   select(screen_name, statuses_count, favourites_count, followers_count, account_age)
 ```
-**How about accounts 30 days old?** 
-44 accounts are 30 days or younger. 39 of them addressed foxnews and 5 replies to liberal sources. 
+
 ```{r eval=FALSE, include=FALSE}
+# **How about accounts 30 days old?** 
+# 44 accounts are 30 days or younger. 39 of them addressed foxnews and 5 replies to liberal sources. 
+
 tweets %>% filter(account_age < 30) %>% group_by(experiment_group, opinion_label) %>% summarize(younger_than_two_weeks = n())
 ```
 
@@ -90,27 +94,36 @@ tweets %>% filter(account_age < 30) %>% group_by(experiment_group, opinion_label
 
 # Research Questions: 
 
-## **A) Is the engagement more polarized when they are engaging/associating with conservative sources (Fox) or liberal sources (CNN, MSNBC, NPR, NYTimes)?** 
+## **A) Are the opinions more polarized when they are engaging/associating with conservative sources (Fox) or liberal sources (CNN, MSNBC, NPR, NYTimes)?** 
 
-### Polarization regarding topic
+### *Polarization regarding topic*
 ```{r}
 # install.packages("reshape2")
 library(reshape2)
-c <- tweets %>% group_by(opinion_label, ego_involvement_label) %>% summarize(n = n())
-c
+c <- tweets %>% 
+  group_by(opinion_label, ego_involvement_label) %>% 
+  summarize(n = n())
 p <- dcast(c , opinion_label~ego_involvement_label)
 p <- p[c(1, 4, 3, 2),]
 p
 ```
 
-The topic of student loan: 
+*The topic of student loan:* 
+
 *BASELINE*
+
 - Very Important against  : 46 
+
 - Somewhat important against : 58  
+
 - Not at all important against : 5 
+
 - Neutral : 213 
+
 - Not at all important for : 6 
+
 - Somewhat important for : 62 
+
 - Very important for : 54 
 
 On aggregate, the population discussion student loan is not polarized. There are more neutrals (213) than support and opposition, and as we go towards the extreme ends, the totals decrease (58--> 46 support, 62--> 54 opposition)
